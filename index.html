@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一程 · 谢立成的笔记</title>
+  <meta name="description" content="一程，是谢立成的笔记。我不教你想什么，我把『自己慢慢变成另一个人』的过程公开给你看。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #FAF8F3;
+      --ink: #1A1614;
+      --muted-ink: #6B6660;
+      --vermilion: #A23F3F;
+      --hairline: #E8E2D5;
+      --serif-cn: "Noto Serif SC", "Songti SC", "STSong", serif;
+      --serif-en: "Cormorant Garamond", "Noto Serif SC", serif;
+      --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif-cn);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+      text-wrap: pretty;
+    }
+
+    p { margin: 0 0 1.25em; }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 240ms var(--ease);
+    }
+    a:hover { border-bottom-color: var(--vermilion); }
+
+    ::selection { background: var(--vermilion); color: var(--paper); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+    section { padding: 160px 0; position: relative; }
+
+    /* ========== Site Header ========== */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+    .site-header > * { pointer-events: auto; }
+    .brand {
+      font-family: var(--serif-cn);
+      font-weight: 300;
+      font-size: 18px;
+      letter-spacing: 0.5em;
+      padding-left: 0.5em;
+      color: var(--ink);
+    }
+    .nav {
+      display: flex; gap: 28px;
+      font-size: 13px;
+      color: var(--muted-ink);
+      letter-spacing: 0.15em;
+    }
+
+    /* ========== Section Label ========== */
+    .section-label {
+      font-family: var(--serif-en);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--muted-ink);
+      margin-bottom: 80px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .section-label::before {
+      content: ""; width: 32px; height: 1px;
+      background: var(--muted-ink); display: block;
+    }
+    .section-label .num {
+      font-size: 15px; letter-spacing: 0.25em;
+    }
+
+    /* ========== 01 Door ========== */
+    .door {
+      min-height: 100vh; padding: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+    }
+    .door .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .door .eyebrow {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--muted-ink);
+      margin-bottom: 56px;
+    }
+    .door h1 {
+      font-family: var(--serif-cn);
+      font-weight: 200;
+      font-size: clamp(64px, 11vw, 168px);
+      line-height: 1.1;
+      letter-spacing: 0.15em;
+      margin: 0 0 80px;
+      padding-left: 0.15em;
+    }
+    .door .subtitle {
+      max-width: 540px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 2.1;
+      color: var(--muted-ink);
+      letter-spacing: 0.08em;
+    }
+    .door .scroll-hint {
+      position: absolute; bottom: 56px; left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 0.4em;
+      color: var(--muted-ink);
+      writing-mode: vertical-rl;
+      animation: drift 3.5s var(--ease) infinite;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+    }
+
+    /* ========== 02 Brief Intro ========== */
+    .intro {
+      padding: 200px 0 120px;
+      text-align: center;
+    }
+    .intro .text {
+      max-width: 680px;
+      margin: 0 auto 56px;
+      font-family: var(--serif-cn);
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 2;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .intro .text em {
+      color: var(--vermilion);
+      font-style: normal;
+    }
+    .intro .more-link {
+      display: inline-block;
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--muted-ink);
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 4px;
+      transition: color 240ms var(--ease), border-color 240ms var(--ease);
+    }
+    .intro .more-link:hover {
+      color: var(--vermilion);
+      border-color: var(--vermilion);
+    }
+
+    /* ========== 03 Five Paths (the star) ========== */
+    .paths-section {
+      padding: 80px 0 160px;
+    }
+    .paths-header {
+      max-width: 720px;
+      margin: 0 auto 96px;
+      text-align: center;
+    }
+    .paths-header .kicker {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.4em;
+      color: var(--vermilion);
+      margin-bottom: 24px;
+    }
+    .paths-header h2 {
+      font-family: var(--serif-cn);
+      font-weight: 200;
+      font-size: clamp(40px, 5.5vw, 64px);
+      letter-spacing: 0.2em;
+      margin: 0 0 32px;
+      padding-left: 0.2em;
+      color: var(--ink);
+    }
+    .paths-header .sub {
+      font-size: 16px;
+      color: var(--muted-ink);
+      max-width: 520px;
+      margin: 0 auto;
+      letter-spacing: 0.05em;
+    }
+
+    .paths {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+      border-top: 1px solid var(--hairline);
+    }
+    .path {
+      display: grid;
+      grid-template-columns: 120px 1fr 200px;
+      gap: 56px;
+      padding: 64px 8px 64px 0;
+      border-bottom: 1px solid var(--hairline);
+      align-items: start;
+      transition: padding-left 600ms var(--ease), background 600ms var(--ease);
+      position: relative;
+    }
+    .path:hover {
+      padding-left: 24px;
+    }
+    .path:hover .path-num { color: var(--vermilion); }
+    .path:hover .path-arrow {
+      transform: translateX(8px);
+      color: var(--vermilion);
+    }
+    .path-num {
+      font-family: var(--serif-en);
+      font-weight: 300;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--muted-ink);
+      letter-spacing: 0.05em;
+      transition: color 600ms var(--ease);
+      padding-top: 8px;
+    }
+    .path-body { display: flex; flex-direction: column; gap: 16px; }
+    .path-title {
+      font-family: var(--serif-cn);
+      font-weight: 300;
+      font-size: 36px;
+      letter-spacing: 0.2em;
+      color: var(--ink);
+      line-height: 1.2;
+      padding-left: 0.2em;
+    }
+    .path-tagline {
+      font-family: var(--serif-cn);
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+    }
+    .path-note {
+      font-size: 15px;
+      color: var(--muted-ink);
+      max-width: 540px;
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+      margin-top: 8px;
+    }
+    .path-aside {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 24px;
+      padding-top: 16px;
+    }
+    .path-pledge {
+      font-family: var(--serif-cn);
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--vermilion);
+      letter-spacing: 0.15em;
+      text-align: right;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .path-arrow {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--muted-ink);
+      transition: transform 500ms var(--ease), color 500ms var(--ease);
+    }
+
+    /* ========== 04 Closing ========== */
+    .closing {
+      padding: 200px 0 160px;
+      text-align: center;
+    }
+    .closing .invite {
+      max-width: 640px;
+      margin: 0 auto 96px;
+      font-family: var(--serif-cn);
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+    .signature {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .signature img { width: 80px; height: 80px; display: block; }
+    .signature .date {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--muted-ink);
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--hairline);
+      font-size: 13px;
+      color: var(--muted-ink);
+      letter-spacing: 0.15em;
+    }
+    footer .colophon {
+      font-family: var(--serif-en);
+      font-style: italic;
+    }
+    footer nav { display: flex; gap: 32px; }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    /* ========== Reveal motion ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 900px) {
+      .container { padding: 0 28px; }
+      section { padding: 96px 0; }
+      .site-header { padding: 20px 28px; }
+      .brand { font-size: 16px; }
+      .nav { display: none; }
+
+      .intro { padding: 120px 0 80px; }
+      .intro .text { font-size: 18px; }
+
+      .paths-section { padding: 40px 0 96px; }
+      .paths-header { margin-bottom: 64px; }
+
+      .path {
+        grid-template-columns: 64px 1fr;
+        grid-template-areas:
+          "num   body"
+          "num   aside";
+        gap: 12px 24px;
+        padding: 40px 0;
+      }
+      .path:hover { padding-left: 0; }
+      .path-num { grid-area: num; font-size: 36px; padding-top: 12px; }
+      .path-body { grid-area: body; gap: 12px; }
+      .path-title { font-size: 26px; letter-spacing: 0.15em; }
+      .path-tagline { font-size: 16px; }
+      .path-note { font-size: 14px; }
+      .path-aside {
+        grid-area: aside;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 8px;
+      }
+      .path-pledge { text-align: left; }
+
+      .closing { padding: 120px 0 96px; }
+      .closing .invite { font-size: 18px; }
+
+      footer .container { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand">一程</div>
+    <nav class="nav">
+      <a href="/about.html">关于</a>
+      <a href="/together.html">同行</a>
+      <a href="mailto:hello@example.com">写信</a>
+    </nav>
+  </header>
+
+  <!-- 01 Door -->
+  <section class="door" data-screen-label="01">
+    <div class="container">
+      <div class="eyebrow reveal">谢立成的笔记</div>
+      <h1 class="reveal">一程的事</h1>
+      <p class="subtitle reveal">
+        放下行囊上路。<br>
+        找到自己的位置走稳。<br>
+        然后让该来的来，让该走的走。
+      </p>
+    </div>
+    <div class="scroll-hint">继续读</div>
+  </section>
+
+  <!-- 02 Brief Intro -->
+  <section class="intro" data-screen-label="02">
+    <div class="container">
+      <p class="text reveal">
+        我不教你想什么。<br>
+        我把<em>“自己慢慢变成另一个人”</em>的过程公开给你看。
+      </p>
+      <a class="more-link reveal" href="/about.html">关于一程 →</a>
+    </div>
+  </section>
+
+  <!-- 03 Five Paths -->
+  <section class="paths-section" data-screen-label="03">
+    <div class="container">
+      <div class="paths-header reveal">
+        <div class="kicker">Five Paths</div>
+        <h2>五条小径</h2>
+        <p class="sub">五个栏目。五个反潮流的承诺。一组串联的练习。</p>
+      </div>
+
+      <ul class="paths">
+        <li><a class="path reveal" href="/section/guoxue.html">
+          <span class="path-num">01</span>
+          <div class="path-body">
+            <div class="path-title">国学探微</div>
+            <div class="path-tagline">几千年前的人，也想过你今天的问题。</div>
+            <p class="path-note">不讲解经典，不掉书袋。把那些被滥用、被神化、被遗忘的智慧，翻译回普通人听得懂的话。</p>
+          </div>
+          <div class="path-aside">
+            <div class="path-pledge">不算命、不玄学</div>
+            <span class="path-arrow">? ?</span>
+          </div>
+        </a></li>
+
+        <li><a class="path reveal" href="/section/lishi.html">
+          <span class="path-num">02</span>
+          <div class="path-body">
+            <div class="path-title">以史为鉴</div>
+            <div class="path-tagline">历史不重复，但人会。</div>
+            <p class="path-note">只挑能照见今天的片段——一个决策、一次转折、一个被低估或被高估的人——拆开看他怎么想、怎么选、为什么。</p>
+          </div>
+          <div class="path-aside">
+            <div class="path-pledge">不复述史海钩沉</div>
+            <span class="path-arrow">? ?</span>
+          </div>
+        </a></li>
+
+        <li><a class="path reveal" href="/section/dushu.html">
+          <span class="path-num">03</span>
+          <div class="path-body">
+            <div class="path-title">精读札记</div>
+            <div class="path-tagline">慢慢读一本书，才知道自己变了。</div>
+            <p class="path-note">没有“5 分钟读懂 XX”，没有干货卡片，没有“年度必读 100 本”。只写真正读完、真正影响了我的书。</p>
+          </div>
+          <div class="path-aside">
+            <div class="path-pledge">不做“5 分钟读懂”</div>
+            <span class="path-arrow">? ?</span>
+          </div>
+        </a></li>
+
+        <li><a class="path reveal" href="/section/kuangjia.html">
+          <span class="path-num">04</span>
+          <div class="path-body">
+            <div class="path-title">深度框架</div>
+            <div class="path-tagline">想不清楚的时候，搭个架子先撑住。</div>
+            <p class="path-note">工程师多年攒下的“想问题的脚手架”：系统思考、第一性原理、AI 时代的认知模型——让混乱暂时安静下来的临时结构，用完可以拆。</p>
+          </div>
+          <div class="path-aside">
+            <div class="path-pledge">不神化任何模型</div>
+            <span class="path-arrow">? ?</span>
+          </div>
+        </a></li>
+
+        <li><a class="path reveal" href="/section/fangtan.html">
+          <span class="path-num">05</span>
+          <div class="path-body">
+            <div class="path-title">千面访谈</div>
+            <div class="path-tagline">看一个人，不看他的成就，看他的脑回路。</div>
+            <p class="path-note">不写他们的人生，拆他们的思维——通过访谈、传记、公开发言，还原一个“思考的现场”。</p>
+          </div>
+          <div class="path-aside">
+            <div class="path-pledge">不写传记、不复制成功学</div>
+            <span class="path-arrow">? ?</span>
+          </div>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 04 Closing -->
+  <section class="closing" data-screen-label="04">
+    <div class="container">
+      <p class="invite reveal">
+        这里是一程的起点。<br>
+        如果你也想这么变，我们一起走一程。
+      </p>
+      <div class="signature reveal">
+        <img src="assets/seal.svg" alt="谢立成印">
+        <span class="date">Anno Domini · MMXXVI</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="colophon">一程 · A blog by 谢立成</div>
+      <nav>
+        <a href="/about.html">关于</a>
+        <a href="/together.html">同行</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="mailto:hello@example.com">写信</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.door .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('in'), 80 + i * 180);
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同行 · 一程</title>
+  <meta name="description" content="同行的几种方式。我卖的不是信息，是关系和共同的练习。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <style>
+    /* I 哲学 intro */
+    .philosophy { max-width: 720px; margin: 0 auto; font-size: 17px; line-height: 1.95; }
+    .philosophy p + p { margin-top: 1.4em; }
+    .philosophy strong { color: var(--ink); font-weight: 500; }
+
+    /* II 四种方式 */
+    .ways { list-style: none; padding: 0; margin: 0 auto; max-width: 1080px; border-top: 1px solid var(--hairline); }
+    .way { padding: 80px 0; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 100px 280px 1fr; gap: 56px; align-items: start; }
+    .way-num { font-family: var(--serif-en); font-weight: 300; font-size: 56px; line-height: 1; color: var(--muted-ink); letter-spacing: 0.05em; padding-top: 8px; }
+    .way-title { display: flex; flex-direction: column; gap: 12px; }
+    .way-title h3 { font-family: var(--serif-cn); font-weight: 300; font-size: 32px; letter-spacing: 0.2em; color: var(--ink); margin: 0; padding-left: 0.2em; line-height: 1.2; }
+    .way-title .neg { font-family: var(--serif-cn); font-weight: 400; font-size: 14px; color: var(--muted-ink); font-style: italic; letter-spacing: 0.06em; line-height: 1.6; }
+    .way-body { display: flex; flex-direction: column; gap: 24px; }
+    .way-body .pos { font-family: var(--serif-cn); font-weight: 400; font-size: 19px; color: var(--ink); letter-spacing: 0.06em; line-height: 1.7; }
+    .way-body .pos .anchor { color: var(--vermilion); }
+    .way-body .detail { font-size: 15px; color: var(--muted-ink); line-height: 1.85; max-width: 520px; }
+
+    /* III 为什么这样 (meta) */
+    .meta-section { padding: 200px 0 160px; background: linear-gradient(to bottom, transparent, rgba(232,226,213,0.3) 30%, rgba(232,226,213,0.3) 70%, transparent); }
+    .meta-section .label { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.4em; color: var(--vermilion); text-align: center; margin-bottom: 24px; }
+    .meta-section h2 { font-family: var(--serif-cn); font-weight: 200; font-size: clamp(36px, 5vw, 56px); letter-spacing: 0.2em; text-align: center; margin: 0 0 80px; padding-left: 0.2em; color: var(--ink); }
+    .meta-text { max-width: 720px; margin: 0 auto; font-size: 17px; line-height: 1.95; }
+    .meta-text p + p { margin-top: 1.4em; }
+    .meta-text strong { color: var(--ink); font-weight: 500; }
+
+    /* IV 邀请 */
+    .invite-section { padding: 160px 0; text-align: center; }
+    .invite-text { max-width: 640px; margin: 0 auto 64px; font-family: var(--serif-cn); font-weight: 300; font-size: 26px; line-height: 1.9; letter-spacing: 0.08em; color: var(--ink); }
+    .invite-cta { display: inline-flex; flex-direction: column; align-items: center; gap: 32px; }
+    .write-link { font-family: var(--serif-cn); font-weight: 400; font-size: 17px; letter-spacing: 0.15em; color: var(--vermilion); border-bottom: 1px solid var(--vermilion); padding-bottom: 6px; transition: gap 240ms var(--ease); }
+    .write-link:hover { letter-spacing: 0.2em; }
+    .invite-section .signature { margin-top: 40px; }
+
+    @media (max-width: 900px) {
+      .way { grid-template-columns: 64px 1fr; grid-template-areas: "num title" "num body"; gap: 16px 24px; padding: 48px 0; }
+      .way-num { grid-area: num; font-size: 36px; padding-top: 12px; }
+      .way-title { grid-area: title; }
+      .way-title h3 { font-size: 24px; letter-spacing: 0.15em; }
+      .way-body { grid-area: body; gap: 16px; }
+      .way-body .pos { font-size: 17px; }
+      .meta-section { padding: 120px 0 96px; }
+      .invite-section { padding: 96px 0; }
+      .invite-text { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand"><a href="/index.html">一程</a></div>
+    <nav class="nav">
+      <a href="/about.html">关于</a>
+      <a href="/together.html">同行</a>
+      <a href="mailto:hello@example.com">写信</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumb reveal">一程<span class="sep">/</span>同行</div>
+      <h1 class="reveal">同行</h1>
+      <p class="lede reveal">
+        同路人之间偶尔的一句话，比一节课管用。
+      </p>
+    </div>
+  </section>
+
+  <!-- I 哲学 intro -->
+  <section data-screen-label="I">
+    <div class="container">
+      <div class="section-label reveal"><span class="num">I</span><span>为什么不卖知识</span></div>
+
+      <div class="philosophy reveal">
+        <p>市面上几乎所有"知识付费博主"的标准做法是：把内容当商品，把读者当客户，把博主当供应商——年费会员、专题买断、企业培训、AI 工具服务，四条产品线就能跑通商业模式。</p>
+        <p>这个模式默认了一个前提：<strong>"我有的是知识，我的工作是把知识卖出去。"</strong></p>
+        <p>但我实际在做的事是：<strong>我在慢慢变成另一个人，我顺手把这个变的过程记录下来。</strong></p>
+        <p>这两件事差别很大。第一件事是<strong>交易</strong>——我给你东西，你给我钱，清清楚楚。第二件事是<strong>陪伴</strong>——我走在前面一点点，你愿意你就跟着走一段，各自走各自看见的东西。</p>
+        <p>我不是说交易不好，是说我做不来。我做交易的话，会慢慢变成那种我最讨厌的人——把"道"压成"卖点"，把"修行"包成"课程"，把读者从"同路人"变成"客户"。</p>
+        <p>那不是我想要的样子。所以这里只有四种"一起走一程"的方式，每一种都更接近<strong>陪伴</strong>而不是<strong>交易</strong>。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- II 四种方式 -->
+  <section data-screen-label="II">
+    <div class="container">
+      <div class="section-label reveal"><span class="num">II</span><span>同行的几种方式</span></div>
+
+      <ul class="ways">
+        <li class="way reveal">
+          <div class="way-num">01</div>
+          <div class="way-title">
+            <h3>付费社群</h3>
+            <div class="neg">不是"获取更多干货"</div>
+          </div>
+          <div class="way-body">
+            <p class="pos">而是 <span class="anchor">加入正在走同一条路的人</span>。</p>
+            <p class="detail">同路人之间偶尔的一句话，比一节课管用。社群里没有打卡，没有积分，没有"今日精华"——有的只是几个在做同样动作的人，偶尔交换观察。慢，但牢。</p>
+          </div>
+        </li>
+
+        <li class="way reveal">
+          <div class="way-num">02</div>
+          <div class="way-title">
+            <h3>付费专栏</h3>
+            <div class="neg">不是"系统课程"</div>
+          </div>
+          <div class="way-body">
+            <p class="pos">而是 <span class="anchor">某个阶段的深度思考全公开</span>。</p>
+            <p class="detail">我读到哪儿、想到哪儿、卡在哪儿，毫无保留。不是"教你一个完整体系"，是"让你看到一个真实在思考的人是怎么思考的"。</p>
+          </div>
+        </li>
+
+        <li class="way reveal">
+          <div class="way-num">03</div>
+          <div class="way-title">
+            <h3>训练营</h3>
+            <div class="neg">不是"21 天学会 XX"</div>
+          </div>
+          <div class="way-body">
+            <p class="pos">而是 <span class="anchor">一起密集地走 21 天</span>。</p>
+            <p class="detail">同一个时间表，同一个动作，看看练习长什么样。结束后我们各自走各自的路，但你已经知道了"练习"具体是什么手感。</p>
+          </div>
+        </li>
+
+        <li class="way reveal">
+          <div class="way-num">04</div>
+          <div class="way-title">
+            <h3>1 对 1 咨询</h3>
+            <div class="neg">不是"我教你"</div>
+          </div>
+          <div class="way-body">
+            <p class="pos">而是 <span class="anchor">你说出你的卡点，我用我的练习成果陪你看一遍</span>。</p>
+            <p class="detail">我不会给你答案。我会和你一起拆问题，把模糊的东西变清楚。看完之后，决定还是你的——这才是它真正的价值。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- III 为什么这样 (meta) -->
+  <section class="meta-section">
+    <div class="container">
+      <div class="label reveal">Meta</div>
+      <h2 class="reveal">为什么这样设计</h2>
+
+      <div class="meta-text reveal">
+        <p>这种模式表面上 <strong>更慢、更难规模化</strong>——一个人服务的人数有上限，单价不能太高，做不出"知识付费爆款"。</p>
+        <p>但 <strong>复购率、忠诚度、单价上限</strong>，都比"标准知识付费"高一个数量级。因为我卖的不是信息，是<strong>关系</strong>和<strong>共同的练习</strong>。</p>
+        <p>信息会贬值——任何"干货"都有半衰期，今天的方法论一年后就过时。但<strong>关系不会贬值</strong>，<strong>共同走过的路也不会贬值</strong>——它们只会越走越深。</p>
+        <p>这也是为什么我从不追求"做大"。<strong>我做得来的是：慢慢写，慢慢陪，十年之后回头看，这个博客还在，我还在，几个读者也还在</strong>——那就够了。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV 邀请 -->
+  <section class="invite-section">
+    <div class="container">
+      <p class="invite-text reveal">
+        想一起走一程？
+      </p>
+      <div class="invite-cta reveal">
+        <a class="write-link" href="mailto:hello@example.com">写一封信告诉我你在想什么 →</a>
+        <div class="signature">
+          <img src="/assets/seal.svg" alt="谢立成印">
+          <span class="date">Anno Domini · MMXXVI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="colophon">一程 · A blog by 谢立成</div>
+      <nav>
+        <a href="/about.html">关于</a>
+        <a href="/together.html">同行</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="mailto:hello@example.com">写信</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/main.js"></script>
+</body>
+</html>

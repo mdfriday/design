@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>千面访谈 · 一程</title>
+  <meta name="description" content="看一个人，不看他的成就，看他的脑回路。我不写他们的人生，我拆他们的思维。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <style>
+    .sec-hero { min-height: 75vh; padding: 200px 0 120px; display: flex; flex-direction: column; justify-content: center; }
+    .sec-hero .container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .sec-hero .crumb { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.4em; color: var(--muted-ink); margin-bottom: 56px; }
+    .sec-hero .crumb .sep { margin: 0 12px; opacity: 0.5; }
+    .sec-hero .num { font-family: var(--serif-en); font-weight: 300; font-size: 72px; line-height: 1; color: var(--vermilion); letter-spacing: 0.05em; margin-bottom: 32px; }
+    .sec-hero h1 { font-family: var(--serif-cn); font-weight: 200; font-size: clamp(56px, 9vw, 128px); line-height: 1.15; letter-spacing: 0.25em; margin: 0 0 24px; padding-left: 0.25em; color: var(--ink); }
+    .sec-hero .kicker { font-family: var(--serif-en); font-style: italic; font-size: 16px; letter-spacing: 0.3em; color: var(--muted-ink); margin-bottom: 56px; }
+    .sec-hero .lede { max-width: 600px; margin: 0 auto; font-family: var(--serif-cn); font-weight: 300; font-size: 22px; line-height: 1.9; color: var(--ink); letter-spacing: 0.06em; }
+
+    .gist { max-width: 720px; margin: 0 auto; font-size: 17px; line-height: 1.95; color: var(--ink); }
+    .gist p + p { margin-top: 1.4em; }
+
+    .pledges { padding: 120px 0; text-align: center; }
+    .pledges .pledge-main { font-family: var(--serif-cn); font-weight: 300; font-size: clamp(36px, 5vw, 56px); letter-spacing: 0.18em; color: var(--ink); margin: 0 0 24px; padding-left: 0.18em; line-height: 1.3; }
+    .pledges .pledge-main .strike { color: var(--muted-ink); text-decoration: line-through; text-decoration-color: var(--vermilion); text-decoration-thickness: 2px; }
+    .pledges .pledge-sub { font-size: 16px; color: var(--muted-ink); letter-spacing: 0.1em; font-style: italic; font-family: var(--serif-cn); }
+
+    .expects { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; max-width: 1080px; margin: 0 auto; }
+    .expect { padding: 40px 32px 0; border-top: 1px solid var(--vermilion); }
+    .expect .label { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.3em; color: var(--vermilion); margin-bottom: 24px; }
+    .expect .name { font-family: var(--serif-cn); font-weight: 400; font-size: 22px; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 20px; }
+    .expect p { font-size: 15px; color: var(--muted-ink); line-height: 1.85; margin: 0; }
+
+    .articles { padding: 120px 0; text-align: center; max-width: 720px; margin: 0 auto; }
+    .articles .stamp { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.4em; color: var(--vermilion); margin-bottom: 32px; }
+    .articles h3 { font-family: var(--serif-cn); font-weight: 300; font-size: 32px; letter-spacing: 0.12em; color: var(--ink); margin: 0 0 24px; padding-left: 0.12em; }
+    .articles p { font-size: 16px; color: var(--muted-ink); line-height: 1.85; max-width: 480px; margin: 0 auto 32px; }
+    .articles .note { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.3em; color: var(--muted-ink); }
+
+    .other-paths { padding: 120px 0; border-top: 1px solid var(--hairline); }
+    .other-paths .label { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.4em; color: var(--muted-ink); text-align: center; margin-bottom: 56px; }
+    .other-paths ul { list-style: none; padding: 0; margin: 0 auto; max-width: 880px; }
+    .other-paths li a { display: grid; grid-template-columns: 64px 200px 1fr 80px; gap: 32px; padding: 24px 8px 24px 0; border-bottom: 1px solid var(--hairline); align-items: baseline; transition: padding-left 400ms var(--ease); }
+    .other-paths li:first-child a { border-top: 1px solid var(--hairline); }
+    .other-paths li a:hover { padding-left: 16px; border-bottom-color: var(--hairline); }
+    .other-paths li a:hover .o-num { color: var(--vermilion); }
+    .other-paths .o-num { font-family: var(--serif-en); font-weight: 300; font-size: 24px; color: var(--muted-ink); transition: color 400ms var(--ease); }
+    .other-paths .o-name { font-family: var(--serif-cn); font-weight: 400; font-size: 20px; letter-spacing: 0.15em; color: var(--ink); }
+    .other-paths .o-tag { font-size: 14px; color: var(--muted-ink); }
+    .other-paths .o-arrow { font-family: var(--serif-en); font-style: italic; font-size: 13px; color: var(--muted-ink); text-align: right; letter-spacing: 0.3em; }
+
+    @media (max-width: 900px) {
+      .sec-hero { padding: 140px 0 80px; min-height: 60vh; }
+      .sec-hero .num { font-size: 48px; margin-bottom: 24px; }
+      .sec-hero h1 { letter-spacing: 0.18em; }
+      .sec-hero .kicker { font-size: 13px; letter-spacing: 0.25em; margin-bottom: 40px; }
+      .sec-hero .lede { font-size: 18px; }
+      .pledges .pledge-main { letter-spacing: 0.12em; }
+      .expects { grid-template-columns: 1fr; gap: 32px; }
+      .other-paths li a { grid-template-columns: 48px 1fr; grid-template-areas: "num name" "num tag" ".   arrow"; gap: 4px 16px; padding: 20px 0; }
+      .other-paths li a:hover { padding-left: 0; }
+      .other-paths .o-num { grid-area: num; font-size: 20px; }
+      .other-paths .o-name { grid-area: name; font-size: 17px; }
+      .other-paths .o-tag { grid-area: tag; font-size: 13px; }
+      .other-paths .o-arrow { grid-area: arrow; text-align: left; margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand"><a href="/index.html">一程</a></div>
+    <nav class="nav">
+      <a href="/about.html">关于</a>
+      <a href="/together.html">同行</a>
+      <a href="mailto:hello@example.com">写信</a>
+    </nav>
+  </header>
+
+  <section class="sec-hero">
+    <div class="container">
+      <div class="crumb reveal">一程<span class="sep">/</span>栏目<span class="sep">/</span>千面访谈</div>
+      <div class="num reveal">05</div>
+      <h1 class="reveal">千面访谈</h1>
+      <div class="kicker reveal">Inside the Mind</div>
+      <p class="lede reveal">看一个人，不看他的成就，看他的脑回路。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label reveal"><span class="num">I</span><span>主旨</span></div>
+      <div class="gist reveal">
+        <p>我不太喜欢人物传记。</p>
+        <p>传记告诉你一个人做了什么，但真正有用的是知道他怎么想的——他在关键时刻怎么判断、他对什么敏感、他和别人差别最大的那个"思维开关"在哪里。</p>
+        <p>这个栏目拆解我感兴趣的人：企业家、思想家、做事的人、想事的人。我不写他们的人生，我拆他们的思维——通过访谈、传记、公开发言，还原一个"思考的现场"。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pledges">
+    <div class="container">
+      <div class="section-label reveal" style="justify-content: center;"><span class="num">II</span><span>承诺</span></div>
+      <p class="pledge-main reveal">不<span class="strike">写传记</span>，不<span class="strike">复制成功学</span>。</p>
+      <p class="pledge-sub reveal">成功不可复制，但思维方式可以学习。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label reveal" style="justify-content: center;"><span class="num">III</span><span>你能在这里期待什么</span></div>
+      <div class="expects">
+        <div class="expect reveal">
+          <div class="label">i.</div>
+          <div class="name">拆思维</div>
+          <p>不写他们的人生履历，拆他们关键时刻的判断结构、信息口径和取舍逻辑。</p>
+        </div>
+        <div class="expect reveal">
+          <div class="label">ii.</div>
+          <div class="name">现场</div>
+          <p>通过访谈、传记、公开发言交叉印证，还原一个"思考的现场"——不是结论，是过程。</p>
+        </div>
+        <div class="expect reveal">
+          <div class="label">iii.</div>
+          <div class="name">借</div>
+          <p>你不需要变成他，但你可以借一双脑回路看世界。借完归还，下一篇换一双。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="articles">
+    <div class="container">
+      <div class="stamp reveal">Coming</div>
+      <h3 class="reveal">第一篇正在写</h3>
+      <p class="reveal">这个栏目还没有发文。第一篇大概是一个公开材料极其丰富、但极少有人真正"读懂"他怎么想的人。</p>
+      <div class="note reveal">订阅 RSS，更新即送</div>
+    </div>
+  </section>
+
+  <section class="other-paths">
+    <div class="container">
+      <div class="label reveal">其他四条小径</div>
+      <ul>
+        <li><a href="/section/guoxue.html"><span class="o-num">01</span><span class="o-name">国学探微</span><span class="o-tag">几千年前的人，也想过你今天的问题。</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/lishi.html"><span class="o-num">02</span><span class="o-name">以史为鉴</span><span class="o-tag">历史不重复，但人会。</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/dushu.html"><span class="o-num">03</span><span class="o-name">精读札记</span><span class="o-tag">慢慢读一本书，才知道自己变了。</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/kuangjia.html"><span class="o-num">04</span><span class="o-name">深度框架</span><span class="o-tag">想不清楚的时候，搭个架子先撑住。</span><span class="o-arrow">读 →</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="colophon">一程 · A blog by 谢立成</div>
+      <nav>
+        <a href="/about.html">关于</a>
+        <a href="/together.html">同行</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="mailto:hello@example.com">写信</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/main.js"></script>
+</body>
+</html>

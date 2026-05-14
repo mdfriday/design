@@ -1,0 +1,228 @@
+/* =====================================================================
+   一程 · Shared design system
+   Editorial Quietism. Single serif family. 4-color palette.
+   ===================================================================== */
+
+:root {
+  --paper:        #FAF8F3;
+  --ink:          #1A1614;
+  --muted-ink:    #6B6660;
+  --vermilion:    #A23F3F;
+  --hairline:     #E8E2D5;
+
+  --serif-cn: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --serif-en: "Cormorant Garamond", "Noto Serif SC", serif;
+
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  text-wrap: pretty;
+}
+
+p { margin: 0 0 1.25em; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 240ms var(--ease);
+}
+a:hover { border-bottom-color: var(--vermilion); }
+
+::selection { background: var(--vermilion); color: var(--paper); }
+
+img { max-width: 100%; display: block; }
+
+/* ==================== Layout primitives ==================== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.narrow    { max-width: 720px;  margin-left: auto; margin-right: auto; }
+.medium    { max-width: 880px;  margin-left: auto; margin-right: auto; }
+
+section { padding: 160px 0; position: relative; }
+
+/* ==================== Site header (fixed) ==================== */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 28px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.site-header > * { pointer-events: auto; }
+
+.brand {
+  font-family: var(--serif-cn);
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  color: var(--ink);
+}
+.brand a { border: none; }
+
+.nav {
+  display: flex; gap: 28px;
+  font-size: 13px;
+  color: var(--muted-ink);
+  letter-spacing: 0.15em;
+}
+
+/* ==================== Section label (numbered) ==================== */
+.section-label {
+  font-family: var(--serif-en);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--muted-ink);
+  margin-bottom: 80px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-label::before {
+  content: ""; width: 32px; height: 1px;
+  background: var(--muted-ink); display: block;
+}
+.section-label .num {
+  font-size: 15px; letter-spacing: 0.25em;
+}
+
+/* ==================== Page hero (inner pages) ==================== */
+.page-hero {
+  min-height: 70vh;
+  padding: 200px 0 120px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.page-hero .container {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+}
+.page-hero .crumb {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--muted-ink);
+  margin-bottom: 40px;
+}
+.page-hero .crumb .sep { margin: 0 12px; opacity: 0.5; }
+.page-hero h1 {
+  font-family: var(--serif-cn);
+  font-weight: 200;
+  font-size: clamp(56px, 8vw, 112px);
+  line-height: 1.15;
+  letter-spacing: 0.2em;
+  margin: 0 0 56px;
+  padding-left: 0.2em;
+  color: var(--ink);
+}
+.page-hero .lede {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 2;
+  color: var(--muted-ink);
+  letter-spacing: 0.06em;
+}
+
+/* ==================== Pull quote (vermilion bar) ==================== */
+.pull-quote {
+  margin: 96px auto;
+  max-width: 720px;
+  padding-left: 32px;
+  border-left: 1px solid var(--vermilion);
+}
+.pull-quote p {
+  font-family: var(--serif-cn);
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  margin: 0;
+}
+.pull-quote p + p { margin-top: 16px; }
+
+/* ==================== Signature (seal + date) ==================== */
+.signature {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.signature img { width: 80px; height: 80px; display: block; }
+.signature .date {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--muted-ink);
+}
+
+/* ==================== Footer ==================== */
+footer {
+  padding: 60px 0;
+  border-top: 1px solid var(--hairline);
+  font-size: 13px;
+  color: var(--muted-ink);
+  letter-spacing: 0.15em;
+}
+footer .colophon {
+  font-family: var(--serif-en);
+  font-style: italic;
+}
+footer nav { display: flex; gap: 32px; }
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ==================== Reveal motion ==================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 900px) {
+  .container { padding: 0 28px; }
+  section { padding: 96px 0; }
+
+  .site-header { padding: 20px 28px; }
+  .brand { font-size: 16px; }
+  .nav { display: none; }
+
+  .page-hero { padding: 140px 0 80px; min-height: 60vh; }
+  .page-hero .crumb { font-size: 11px; letter-spacing: 0.3em; }
+  .page-hero .lede { font-size: 16px; }
+
+  .pull-quote { margin: 64px auto; padding-left: 24px; }
+  .pull-quote p { font-size: 18px; }
+
+  footer .container { flex-direction: column; gap: 24px; text-align: center; }
+}
