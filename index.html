@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>一程 · 谢立成的笔记</title>
-  <meta name="description" content="一程，是谢立成的笔记。我不教你想什么，我把『自己慢慢变成另一个人』的过程公开给你看。">
+  <meta name="description" content="一程，是谢立成的笔记。我不教你想什么，我把『自己慢慢变成另一个人』的过程公开给你看">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,7 +76,66 @@
       font-size: 13px;
       color: var(--muted-ink);
       letter-spacing: 0.15em;
+      align-items: center;
     }
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-trigger {
+      position: relative;
+      color: inherit;
+      cursor: default;
+    }
+    .nav-trigger::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0.15em;
+      bottom: -4px;
+      height: 1px;
+      background: var(--vermilion);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 240ms var(--ease);
+    }
+    .nav-dropdown:hover .nav-trigger::after,
+    .nav-dropdown:focus-within .nav-trigger::after {
+      transform: scaleX(1);
+    }
+    .nav-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: max-content;
+      min-width: 104px;
+      padding: 10px 12px;
+      border: 1px solid var(--hairline);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 16px 36px rgba(26, 22, 20, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 240ms var(--ease), transform 240ms var(--ease), visibility 240ms var(--ease);
+    }
+    .nav-dropdown:hover .nav-menu,
+    .nav-dropdown:focus-within .nav-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-menu a {
+      display: block;
+      white-space: nowrap;
+      border-bottom: 1px solid transparent;
+      padding: 1px 0;
+      color: var(--muted-ink);
+    }
+    .nav-menu a:hover { border-bottom-color: var(--vermilion); }
 
     /* ========== Section Label ========== */
     .section-label {
@@ -108,14 +167,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      will-change: opacity, transform;
     }
-    .door .eyebrow {
+    .door .overline {
+      font-family: var(--serif-cn);
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: var(--muted-ink);
+      margin-bottom: 40px;
+      opacity: 0.7;
+    }
+    .door .overline-en {
       font-family: var(--serif-en);
       font-style: italic;
-      font-size: 14px;
-      letter-spacing: 0.3em;
-      color: var(--muted-ink);
-      margin-bottom: 56px;
+      letter-spacing: 0.12em;
     }
     .door h1 {
       font-family: var(--serif-cn);
@@ -123,27 +190,40 @@
       font-size: clamp(64px, 11vw, 168px);
       line-height: 1.1;
       letter-spacing: 0.15em;
-      margin: 0 0 80px;
+      margin: 0 0 56px;
       padding-left: 0.15em;
     }
     .door .subtitle {
-      max-width: 540px;
+      max-width: 720px;
       margin: 0 auto;
-      font-size: 18px;
-      line-height: 2.1;
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(18px, 2vw, 28px);
+      line-height: 1.5;
       color: var(--muted-ink);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.03em;
+      opacity: 0.72;
+      white-space: nowrap;
     }
     .door .scroll-hint {
       position: absolute; bottom: 56px; left: 50%;
       transform: translateX(-50%);
-      font-family: var(--serif-en);
-      font-style: italic;
-      font-size: 12px;
-      letter-spacing: 0.4em;
+      font-family: var(--serif-cn);
+      font-size: 13px;
+      letter-spacing: 0.24em;
       color: var(--muted-ink);
       writing-mode: vertical-rl;
       animation: drift 3.5s var(--ease) infinite;
+      opacity: 0.68;
+    }
+    .door .scroll-hint::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 28px;
+      margin: 14px auto 0;
+      background: var(--hairline);
     }
     @keyframes drift {
       0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
@@ -230,7 +310,7 @@
     }
     .path {
       display: grid;
-      grid-template-columns: 120px 1fr 200px;
+      grid-template-columns: 120px 1fr 160px;
       gap: 56px;
       padding: 64px 8px 64px 0;
       border-bottom: 1px solid var(--hairline);
@@ -267,20 +347,21 @@
       padding-left: 0.2em;
     }
     .path-tagline {
-      font-family: var(--serif-cn);
-      font-weight: 400;
-      font-size: 18px;
-      color: var(--ink);
-      letter-spacing: 0.08em;
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 20px;
+      color: var(--vermilion);
+      letter-spacing: 0.04em;
       line-height: 1.6;
     }
     .path-note {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--muted-ink);
       max-width: 540px;
       line-height: 1.85;
       letter-spacing: 0.04em;
-      margin-top: 8px;
+      margin-top: 0;
     }
     .path-aside {
       display: flex;
@@ -289,15 +370,15 @@
       gap: 24px;
       padding-top: 16px;
     }
-    .path-pledge {
+    .path-cta {
       font-family: var(--serif-cn);
       font-weight: 400;
-      font-size: 13px;
-      color: var(--vermilion);
-      letter-spacing: 0.15em;
+      font-size: 14px;
+      color: var(--muted-ink);
+      letter-spacing: 0.12em;
       text-align: right;
       line-height: 1.6;
-      font-style: italic;
+      white-space: nowrap;
     }
     .path-arrow {
       font-family: var(--serif-en);
@@ -385,6 +466,7 @@
 
       .intro { padding: 120px 0 80px; }
       .intro .text { font-size: 18px; }
+      .door .subtitle { white-space: normal; }
 
       .paths-section { padding: 40px 0 96px; }
       .paths-header { margin-bottom: 64px; }
@@ -407,10 +489,11 @@
         grid-area: aside;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 12px;
         padding-top: 8px;
       }
-      .path-pledge { text-align: left; }
+      .path-cta { text-align: left; }
 
       .closing { padding: 120px 0 96px; }
       .closing .invite { font-size: 18px; }
@@ -425,6 +508,8 @@
     <div class="brand">一程</div>
     <nav class="nav">
       <a href="/about.html">关于</a>
+      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">精读札记</a><a href="/section/kuangjia.html">深度框架</a><a href="/section/fangtan.html">千面访谈</a></span></span>
+      <a href="/section/xuexi.html">终身学习</a>
       <a href="/together.html">同行</a>
       <a href="mailto:hello@example.com">写信</a>
     </nav>
@@ -433,23 +518,19 @@
   <!-- 01 Door -->
   <section class="door" data-screen-label="01">
     <div class="container">
-      <div class="eyebrow reveal">谢立成的笔记</div>
+      <div class="overline reveal">「一程」· <span class="overline-en">Underway</span></div>
       <h1 class="reveal">一程的事</h1>
-      <p class="subtitle reveal">
-        放下行囊上路。<br>
-        找到自己的位置走稳。<br>
-        然后让该来的来，让该走的走。
-      </p>
+      <p class="subtitle reveal">Release. Stand. Become. The work of one stretch.</p>
     </div>
-    <div class="scroll-hint">继续读</div>
+    <div class="scroll-hint">启程</div>
   </section>
 
   <!-- 02 Brief Intro -->
   <section class="intro" data-screen-label="02">
     <div class="container">
       <p class="text reveal">
-        我不教你想什么。<br>
-        我把<em>“自己慢慢变成另一个人”</em>的过程公开给你看。
+        我不教你想什么<br>
+        我把<em>“自己慢慢变成另一个人”</em>的过程公开给你看
       </p>
       <a class="more-link reveal" href="/about.html">关于一程 →</a>
     </div>
@@ -461,7 +542,7 @@
       <div class="paths-header reveal">
         <div class="kicker">Five Paths</div>
         <h2>五条小径</h2>
-        <p class="sub">五个栏目。五个反潮流的承诺。一组串联的练习。</p>
+        <p class="sub">五个入口，各自独立，又在同一场长期练习里相遇</p>
       </div>
 
       <ul class="paths">
@@ -469,12 +550,12 @@
           <span class="path-num">01</span>
           <div class="path-body">
             <div class="path-title">国学探微</div>
-            <div class="path-tagline">几千年前的人，也想过你今天的问题。</div>
-            <p class="path-note">不讲解经典，不掉书袋。把那些被滥用、被神化、被遗忘的智慧，翻译回普通人听得懂的话。</p>
+            <p class="path-note">几千年前的人，也想过你今天的问题</p>
+            <div class="path-tagline">They wondered too, thousands of years ago.</div>
           </div>
           <div class="path-aside">
-            <div class="path-pledge">不算命、不玄学</div>
-            <span class="path-arrow">? ?</span>
+            <div class="path-cta">点此进入</div>
+            <span class="path-arrow">→</span>
           </div>
         </a></li>
 
@@ -482,12 +563,12 @@
           <span class="path-num">02</span>
           <div class="path-body">
             <div class="path-title">以史为鉴</div>
-            <div class="path-tagline">历史不重复，但人会。</div>
-            <p class="path-note">只挑能照见今天的片段——一个决策、一次转折、一个被低估或被高估的人——拆开看他怎么想、怎么选、为什么。</p>
+            <p class="path-note">历史不重复，但人会</p>
+            <div class="path-tagline">History doesn't repeat. People do.</div>
           </div>
           <div class="path-aside">
-            <div class="path-pledge">不复述史海钩沉</div>
-            <span class="path-arrow">? ?</span>
+            <div class="path-cta">点此进入</div>
+            <span class="path-arrow">→</span>
           </div>
         </a></li>
 
@@ -495,12 +576,12 @@
           <span class="path-num">03</span>
           <div class="path-body">
             <div class="path-title">精读札记</div>
-            <div class="path-tagline">慢慢读一本书，才知道自己变了。</div>
-            <p class="path-note">没有“5 分钟读懂 XX”，没有干货卡片，没有“年度必读 100 本”。只写真正读完、真正影响了我的书。</p>
+            <p class="path-note">慢慢读一本书，才知道自己变了</p>
+            <div class="path-tagline">Read slowly. Notice yourself changing.</div>
           </div>
           <div class="path-aside">
-            <div class="path-pledge">不做“5 分钟读懂”</div>
-            <span class="path-arrow">? ?</span>
+            <div class="path-cta">点此进入</div>
+            <span class="path-arrow">→</span>
           </div>
         </a></li>
 
@@ -508,12 +589,12 @@
           <span class="path-num">04</span>
           <div class="path-body">
             <div class="path-title">深度框架</div>
-            <div class="path-tagline">想不清楚的时候，搭个架子先撑住。</div>
-            <p class="path-note">工程师多年攒下的“想问题的脚手架”：系统思考、第一性原理、AI 时代的认知模型——让混乱暂时安静下来的临时结构，用完可以拆。</p>
+            <p class="path-note">想不清楚的时候，搭个架子先撑住</p>
+            <div class="path-tagline">When thinking gets messy, build a frame.</div>
           </div>
           <div class="path-aside">
-            <div class="path-pledge">不神化任何模型</div>
-            <span class="path-arrow">? ?</span>
+            <div class="path-cta">点此进入</div>
+            <span class="path-arrow">→</span>
           </div>
         </a></li>
 
@@ -521,12 +602,12 @@
           <span class="path-num">05</span>
           <div class="path-body">
             <div class="path-title">千面访谈</div>
-            <div class="path-tagline">看一个人，不看他的成就，看他的脑回路。</div>
-            <p class="path-note">不写他们的人生，拆他们的思维——通过访谈、传记、公开发言，还原一个“思考的现场”。</p>
+            <p class="path-note">看一个人，不看他的成就，看他的脑回路</p>
+            <div class="path-tagline">Look past the resume. Look at the mind.</div>
           </div>
           <div class="path-aside">
-            <div class="path-pledge">不写传记、不复制成功学</div>
-            <span class="path-arrow">? ?</span>
+            <div class="path-cta">点此进入</div>
+            <span class="path-arrow">→</span>
           </div>
         </a></li>
       </ul>
@@ -537,12 +618,11 @@
   <section class="closing" data-screen-label="04">
     <div class="container">
       <p class="invite reveal">
-        这里是一程的起点。<br>
-        如果你也想这么变，我们一起走一程。
+        这里是一程的起点<br>
+        如果你也想这么变，我们一起走一程
       </p>
       <div class="signature reveal">
         <img src="assets/seal.svg" alt="谢立成印">
-        <span class="date">Anno Domini · MMXXVI</span>
       </div>
     </div>
   </section>
@@ -552,6 +632,7 @@
       <div class="colophon">一程 · A blog by 谢立成</div>
       <nav>
         <a href="/about.html">关于</a>
+        <a href="/section/xuexi.html">终身学习</a>
         <a href="/together.html">同行</a>
         <a href="/feed.xml">RSS</a>
         <a href="mailto:hello@example.com">写信</a>
@@ -576,7 +657,26 @@
         setTimeout(() => el.classList.add('in'), 80 + i * 180);
       });
     });
+
+    const doorContent = document.querySelector('.door .container');
+    const doorHint = document.querySelector('.door .scroll-hint');
+    const fadeDoor = () => {
+      const progress = Math.min(window.scrollY / (window.innerHeight * 0.55), 1);
+      const opacity = Math.max(1 - progress * 1.15, 0);
+      const lift = progress * -28;
+      doorContent.style.opacity = opacity;
+      doorContent.style.transform = `translateY(${lift}px)`;
+      doorHint.style.opacity = Math.max(0.68 - progress, 0);
+    };
+    window.addEventListener('scroll', fadeDoor, { passive: true });
+    fadeDoor();
   </script>
 
 </body>
 </html>
+
+
+
+
+
+

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>关于「一程」 · 谢立成的笔记</title>
-  <meta name="description" content="一程的三层结构：表层是中层的外溢副产品，中层是底层的持续生产线。我先成为那个人，练习自然发生，内容自然外溢。">
+  <meta name="description" content="一程不是一个知识品牌，而是谢立成这个名字慢慢展开的一段路">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,38 +14,49 @@
 
   <style>
     /* I 名字 */
-    .name-intro { font-size: 17px; color: var(--muted-ink); margin-bottom: 96px; max-width: 640px; }
+    .name-intro { font-size: 18px; color: var(--muted-ink); margin-bottom: 96px; max-width: 760px; line-height: 2; }
+    .name-intro p + p { margin-top: 1.4em; }
     .three-chars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 64px; margin-bottom: 96px; }
-    .three-chars .ch { text-align: center; }
-    .three-chars .ch .glyph { font-family: var(--serif-cn); font-weight: 300; font-size: clamp(96px, 11vw, 144px); line-height: 1; color: var(--ink); margin-bottom: 32px; }
-    .three-chars .ch .meaning { font-size: 15px; line-height: 2; color: var(--muted-ink); max-width: 240px; margin: 0 auto; }
+    .three-chars .ch { text-align: center; position: relative; }
+    .three-chars .ch::before { content: ""; position: absolute; top: 72px; left: 50%; width: 1px; height: 0; background: var(--hairline); transition: height 900ms var(--ease); }
+    .three-chars .ch.in::before { height: 120px; }
+    .three-chars .ch .glyph { font-family: var(--serif-cn); font-weight: 300; font-size: clamp(96px, 11vw, 144px); line-height: 1; color: var(--ink); margin-bottom: 32px; transform: translateY(12px); transition: transform 900ms var(--ease), color 900ms var(--ease); }
+    .three-chars .ch.in .glyph { transform: translateY(0); }
+    .three-chars .ch:hover .glyph { color: var(--vermilion); }
+    .three-chars .ch .meaning { font-size: 15px; line-height: 2; color: var(--muted-ink); max-width: 240px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .three-chars .ch .meaning .line { display: block; width: 100%; text-align: center; }
     .three-chars .ch .meaning .key { color: var(--ink); font-weight: 500; display: block; margin-bottom: 12px; letter-spacing: 0.06em; }
-    .name-echo { text-align: center; max-width: 720px; margin: 0 auto; font-family: var(--serif-cn); font-weight: 300; font-size: 22px; letter-spacing: 0.1em; color: var(--ink); }
+    .name-echo { text-align: center; max-width: 720px; margin: 0 auto 48px; font-family: var(--serif-cn); font-weight: 300; font-size: 22px; letter-spacing: 0.1em; color: var(--ink); }
+    .name-bridge { max-width: 720px; margin: 0 auto; font-size: 17px; line-height: 2; color: var(--muted-ink); }
+    .name-bridge p + p { margin-top: 1.4em; }
+    .name-bridge strong { color: var(--ink); font-weight: 400; }
 
     /* II 在做什么 */
     .doing { max-width: 720px; margin: 0 auto; font-size: 17px; line-height: 1.95; }
     .doing p + p { margin-top: 1.4em; }
     .doing strong { color: var(--ink); font-weight: 500; }
-    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 64px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-    .duo > div { padding: 40px 32px; }
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 1040px; margin: 64px auto; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+    .duo > div { padding: 36px 24px; }
     .duo > div + div { border-left: 1px solid var(--hairline); }
     .duo .label { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.3em; color: var(--vermilion); margin-bottom: 16px; }
     .duo .h { font-family: var(--serif-cn); font-weight: 300; font-size: 26px; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 16px; }
-    .duo p { font-size: 15px; color: var(--muted-ink); line-height: 1.85; margin: 0; }
+    .duo p { font-size: 15px; color: var(--muted-ink); line-height: 1.85; letter-spacing: 0.02em; margin: 0; }
 
     /* III 三层 */
     .layers { display: flex; flex-direction: column; }
-    .layer { padding: 64px 0; border-top: 1px solid var(--hairline); display: grid; grid-template-columns: 220px 1fr; gap: 64px; align-items: start; }
+    .layer { padding: 56px 0; border-top: 1px solid var(--hairline); display: grid; grid-template-columns: 220px 1fr; gap: 64px; align-items: start; position: relative; }
+    .layer::before { content: ""; position: absolute; top: -1px; left: 0; width: 0; height: 1px; background: var(--vermilion); transition: width 900ms var(--ease); }
+    .layer.in::before { width: 96px; }
     .layer:last-of-type { border-bottom: 1px solid var(--hairline); }
     .layer .meta { font-size: 14px; color: var(--muted-ink); letter-spacing: 0.15em; }
     .layer .meta .roman { font-family: var(--serif-en); font-style: italic; font-size: 13px; color: var(--vermilion); display: block; margin-bottom: 12px; letter-spacing: 0.3em; }
     .layer h3 { font-family: var(--serif-cn); font-weight: 400; font-size: 28px; letter-spacing: 0.08em; margin: 0 0 8px; }
     .layer .visibility { font-size: 13px; color: var(--muted-ink); letter-spacing: 0.2em; margin-bottom: 20px; }
-    .layer p { font-size: 16px; color: var(--ink); max-width: 640px; }
+    .layer p { font-size: 16px; color: var(--ink); max-width: 620px; }
     .layer .practice { font-size: 14px; color: var(--muted-ink); font-style: italic; margin-top: 16px; }
 
     /* IV 边界 */
-    .nots-intro { max-width: 640px; color: var(--muted-ink); margin: 0 auto 80px; text-align: center; }
+    .nots-intro { max-width: 1040px; color: var(--muted-ink); margin: 0 auto 80px; text-align: center; white-space: nowrap; }
     .nots { list-style: none; padding: 0; margin: 0 auto 64px; max-width: 800px; }
     .not { padding: 32px 0; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: baseline; }
     .not:first-child { border-top: 1px solid var(--hairline); }
@@ -62,13 +73,21 @@
     .final-statement { max-width: 680px; margin: 0 auto 120px; font-family: var(--serif-cn); font-weight: 300; font-size: 22px; line-height: 2; letter-spacing: 0.06em; color: var(--ink); text-align: center; }
     .final-statement em { color: var(--vermilion); font-style: normal; }
     .closing-block { text-align: center; }
+    .signature img { animation: sealBreath 5s var(--ease) infinite; }
+    @keyframes sealBreath {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
 
     @media (max-width: 900px) {
       .three-chars { grid-template-columns: 1fr; gap: 48px; }
       .three-chars .ch .glyph { font-size: 88px; margin-bottom: 24px; }
+      .three-chars .ch::before { display: none; }
       .duo { grid-template-columns: 1fr; }
       .duo > div + div { border-left: none; border-top: 1px solid var(--hairline); }
+      .duo p { white-space: normal; }
       .layer { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
+      .nots-intro { white-space: normal; }
       .not { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
       .restraints { gap: 48px; }
       .restraint .word { font-size: 36px; }
@@ -82,6 +101,8 @@
     <div class="brand"><a href="/index.html">一程</a></div>
     <nav class="nav">
       <a href="/about.html">关于</a>
+      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">精读札记</a><a href="/section/kuangjia.html">深度框架</a><a href="/section/fangtan.html">千面访谈</a></span></span>
+      <a href="/section/xuexi.html">终身学习</a>
       <a href="/together.html">同行</a>
       <a href="mailto:hello@example.com">写信</a>
     </nav>
@@ -89,10 +110,9 @@
 
   <section class="page-hero">
     <div class="container">
-      <div class="crumb reveal">一程<span class="sep">/</span>关于</div>
       <h1 class="reveal">关于「一程」</h1>
       <p class="lede reveal">
-        一程的事，是放下行囊上路，找到自己的位置走稳，然后让该来的来、该走的走。
+        卸下包袱，站稳这一程，坦然迎接所有发生
       </p>
     </div>
   </section>
@@ -102,26 +122,34 @@
     <div class="container">
       <div class="section-label reveal"><span class="num">I</span><span>名字</span></div>
 
-      <p class="name-intro narrow reveal">
-        我叫谢立成。这是父母给我起的名字。家里人总说你要多感恩谢谢别人，你要立得正站得直，希望你可以成功。我一直按照世俗上的规矩做事——为人正直，做事认真，懂得感恩。直到这几年，读了一些书，做了一些事，经过一些反复，我才慢慢看懂这三个字。
-      </p>
+      <div class="name-intro narrow reveal">
+        <p>我叫谢立成</p>
+        <p>小时候，我以为这是父母给我的祝愿：懂得感恩，站得端正，最后有所成就</p>
+        <p>后来读书、做事、反复碰壁，我才慢慢发现：这个名字真正深的地方，不在“成功”，而在“变化”</p>
+        <p>谢、立、成，不再只是三个字，而像一个人变化时绕不开的三个动作</p>
+      </div>
 
       <div class="three-chars">
         <div class="ch reveal">
           <div class="glyph">谢</div>
-          <p class="meaning"><span class="key">应是辞别、放下</span>谢别前尘幻影，<br>谢落标签执念。</p>
+          <p class="meaning"><span class="key">应是辞别、放下</span><span class="line">谢别前尘幻影</span><span class="line">谢落标签执念</span></p>
         </div>
         <div class="ch reveal">
           <div class="glyph">立</div>
-          <p class="meaning"><span class="key">应是树立、安住</span>放下不是坍塌，<br>是于空寂处立身。</p>
+          <p class="meaning"><span class="key">应是树立、安住</span><span class="line">放下不是坍塌</span><span class="line">是于空寂处立身</span></p>
         </div>
         <div class="ch reveal">
           <div class="glyph">成</div>
-          <p class="meaning"><span class="key">应是圆满、成就</span>不是功成名就的成，<br>是因缘和合、法尔如是的成。</p>
+          <p class="meaning"><span class="key">应是圆满、成就</span><span class="line">不是功成名就的成</span><span class="line">是因缘和合、法尔如是</span></p>
         </div>
       </div>
 
-      <p class="name-echo reveal">谢其应谢，立其当立，成其本成。</p>
+      <p class="name-echo reveal">谢其应谢，立其当立，成其本成</p>
+      <div class="name-bridge reveal">
+        <p>所以，“谢立成”后来不再只是一个名字，而是一种次第：谢其所累，立其所依，成其所应</p>
+        <p><strong>《一程》就是从这里来的</strong></p>
+        <p>它不是另起一个高明的名字，也不是我要建立什么体系。它只是这三个字往外走出来的一段路：不断体验生活，细密观察，深度思考，反复修正，把所知一点点落实到所行</p>
+      </div>
     </div>
   </section>
 
@@ -131,27 +159,22 @@
       <div class="section-label reveal"><span class="num">II</span><span>在做什么</span></div>
 
       <div class="doing reveal">
-        <p>我不是国学大师，也不是 AI 专家。</p>
-        <p>我是一个读过《易经》《道德经》的工程师，是一个用过《金刚经》思考问题的项目参与者，是做工作流、用 AI 写代码和写文章的普通人。</p>
-        <p>我没有宏大的使命，也没有什么"赋能"的野心。我只是发现，当我把"读经典"和"用 AI"这两件事放在一起的时候——</p>
+        <p>《一程》真正做的事，其实只有两件：以经典观照现实，以深思校正行动</p>
+        <p>经典不是装饰门面的引文，而是照见现实的参照。深度思考也不是把问题想复杂，而是在体验、观察、辨析、行动之间反复校验</p>
+        <p>我关心的是知行合一：所读能否进入判断，所思能否落实于行，所行能否反过来修正所知</p>
       </div>
 
       <div class="duo reveal">
         <div>
-          <div class="label">i. 道</div>
-          <div class="h">经典给了我框架</div>
-          <p>思考问题的底层结构、做选择时的取舍逻辑、看世界的视角。</p>
+          <div class="label">i. Root</div>
+          <div class="h">经典观照</div>
+          <p>以古人的问题意识照见今日处境：看人、看事、看变局，也看自己如何不失其位</p>
         </div>
         <div>
-          <div class="label">ii. 术</div>
-          <div class="h">AI 给了我杠杆</div>
-          <p>信息处理的效率、苏格拉底式的自我盘问、把模糊想法快速落地的能力。</p>
+          <div class="label">ii. Practice</div>
+          <div class="h">深思笃行</div>
+          <p>从生活经验出发，观察其纹理，辨析其因果，再把理解落到行动中反复校正</p>
         </div>
-      </div>
-
-      <div class="doing reveal">
-        <p><strong>一个让人深，一个让人快。</strong>合在一起，是我目前能找到的、普通人在这个时代不被信息洪流冲垮的最好方式。</p>
-        <p>这个博客从头到尾，只做一件事：<strong>记录、陪伴、看见</strong>。</p>
       </div>
     </div>
   </section>
@@ -163,39 +186,39 @@
 
       <div class="layers">
         <article class="layer reveal">
-          <div class="meta"><span class="roman">i. Surface</span>表层 · 内容</div>
+          <div class="meta"><span class="roman">i. Content</span>内容之门</div>
           <div>
-            <h3>看得见的</h3>
-            <div class="visibility">读者、平台、合作方第一眼看到的东西</div>
-            <p>五个栏目的所有文章、笔记、专题、产品。这一层是博客的"门面"，重要，但不是核心。</p>
-            <p class="practice">这一层做「谢」的功夫——谢掉对流量的执念，谢掉对成绩的焦虑，谢掉"必须写出爆款"的心魔。</p>
+            <h3>先入内容之门</h3>
+            <div class="visibility">国学、历史、读书、框架、访谈、学习笔记</div>
+            <p>可以从一本书、一段历史、一个人物，或一次学习记录进入，先取得具体知识与判断角度</p>
+            <p class="practice">只取所需即可，不必先追问整套来处</p>
           </div>
         </article>
 
         <article class="layer reveal">
-          <div class="meta"><span class="roman">ii. Practice</span>中层 · 练习</div>
+          <div class="meta"><span class="roman">ii. Practice</span>练习之法</div>
           <div>
-            <h3>看不太清的</h3>
-            <div class="visibility">每天在做的那件事</div>
-            <p>长期读经典 + 长期用 AI + 长期反思自己 + 长期观察别人。这是一个没有终点的练习，不是一个项目。它没有"完成"的那一天，只有"今天做了 vs 没做"。</p>
-            <p class="practice">这一层是博客真正的生产线，也是「立」的功夫——在喧嚣中立住一个稳定的姿态。</p>
+            <h3>继而见其练习</h3>
+            <div class="visibility">经典研读、生活体验、持续观察、复盘修正</div>
+            <p>每篇文章背后，都来自反复发生的功课：经历一事，观察一层，思考一遍，再到行动中校验</p>
+            <p class="practice">我愿意公开的，不只是结论，也包括理解如何生成，行动如何被修正</p>
           </div>
         </article>
 
         <article class="layer reveal">
-          <div class="meta"><span class="roman">iii. Person</span>底层 · 人</div>
+          <div class="meta"><span class="roman">iii. Becoming</span>成己之路</div>
           <div>
-            <h3>看不见的</h3>
-            <div class="visibility">练习做了三年、五年、十年之后</div>
-            <p>我会慢慢变成另一个人。懂得顺势而为，处事游刃有余，在不确定中不慌，在变化中不乱。庄子叫"庖丁解牛"，王阳明叫"知行合一"，波兰尼叫"默会知识"。父母给我的"成"字，也是这个意思。</p>
-            <p class="practice">这一层是品牌真正的护城河——但永远不直接卖它。</p>
+            <h3>终归于人的变化</h3>
+            <div class="visibility">不是成为老师，而是成为更清明、更稳定的人</div>
+            <p>如果这些练习真的有用，最后改变的不会只是文章，而是人的状态：遇事少一点慌乱，判断多一点余地，面对变化时更能站住</p>
+            <p class="practice">留下的不是一套答案，而是一段由知入行、由行返知的变化过程</p>
           </div>
         </article>
       </div>
 
       <blockquote class="pull-quote reveal">
-        <p>表层是中层的外溢副产品，中层是底层的持续生产线。</p>
-        <p>我先成为那个人，练习自然发生，内容自然外溢。</p>
+        <p>文章是入口，练习是路径，变化是归处</p>
+        <p>《一程》想公开的，正是这个过程</p>
       </blockquote>
     </div>
   </section>
@@ -205,16 +228,16 @@
     <div class="container">
       <div class="section-label reveal"><span class="num">IV</span><span>边界</span></div>
 
-      <p class="nots-intro reveal">正因为这个博客是一个练习的外溢，有些事我做不来——不是不想，是做了会把整件事拧断。</p>
+      <p class="nots-intro reveal">正因为这个博客是一个练习的外溢，有些事我做不来——不是不想，是做了会把整件事拧断</p>
 
       <ul class="nots">
-        <li class="not reveal"><div class="label">不做 <span class="strike">"21 天搞定 XX"</span></div><div class="reason">因为这件事本来就没法 21 天搞定。</div></li>
-        <li class="not reveal"><div class="label">不做 <span class="strike">"年度认知大课"</span></div><div class="reason">因为我自己都还在变，我哪敢办大课。</div></li>
-        <li class="not reveal"><div class="label">不做 <span class="strike">"算命八字风水"</span></div><div class="reason">因为这是把"看见"变成了"预测"，方向是反的。</div></li>
-        <li class="not reveal"><div class="label">不做 <span class="strike">"流量爆款"</span></div><div class="reason">因为爆款需要"我已经看清楚"的姿态，我还没有。</div></li>
+        <li class="not reveal"><div class="label">不做 <span class="strike">"21 天搞定 XX"</span></div><div class="reason">因为这件事本来就没法 21 天搞定</div></li>
+        <li class="not reveal"><div class="label">不做 <span class="strike">"年度认知大课"</span></div><div class="reason">因为我自己都还在变，我哪敢办大课</div></li>
+        <li class="not reveal"><div class="label">不做 <span class="strike">"算命八字风水"</span></div><div class="reason">因为这是把"看见"变成了"预测"，方向是反的</div></li>
+        <li class="not reveal"><div class="label">不做 <span class="strike">"流量爆款"</span></div><div class="reason">因为爆款常常需要一种笃定的姿态，而我更愿意保留继续看见的余地</div></li>
       </ul>
 
-      <p class="nots-closing reveal">这些事不丢人，只是不属于我。</p>
+      <p class="nots-closing reveal">这些事不丢人，只是不属于我</p>
     </div>
   </section>
 
@@ -224,21 +247,19 @@
       <div class="section-label reveal" style="justify-content: center;"><span class="num">V</span><span>写在最后</span></div>
 
       <div class="restraints">
-        <div class="restraint reveal"><div class="word">不教</div><div class="gloss">我不站讲台</div></div>
-        <div class="restraint reveal"><div class="word">公开</div><div class="gloss">我是在做，顺便记录</div></div>
-        <div class="restraint reveal"><div class="word">同行</div><div class="gloss">承诺这一段，不是一辈子</div></div>
+        <div class="restraint reveal"><div class="word">不教</div><div class="gloss">不站讲台给结论</div></div>
+        <div class="restraint reveal"><div class="word">公开</div><div class="gloss">把练习和观察摊开</div></div>
+        <div class="restraint reveal"><div class="word">一起走</div><div class="gloss">只承诺这一程真实发生</div></div>
       </div>
 
       <p class="final-statement reveal">
-        我不教你想什么。<br>
-        我把<em>"自己慢慢变成另一个人"</em>的过程公开给你看。<br>
-        如果你也想这么变，我们一起走一程。
-      </p>
+        我不教你想什么<br>
+        我把正在练习、观察、修正的过程公开给你看<br>
+        如果你也在路上，我们一起走一程</p>
 
       <div class="closing-block">
         <div class="signature reveal">
           <img src="/assets/seal.svg" alt="谢立成印">
-          <span class="date">Anno Domini · MMXXVI</span>
         </div>
       </div>
     </div>
@@ -249,6 +270,7 @@
       <div class="colophon">一程 · A blog by 谢立成</div>
       <nav>
         <a href="/about.html">关于</a>
+        <a href="/section/xuexi.html">终身学习</a>
         <a href="/together.html">同行</a>
         <a href="/feed.xml">RSS</a>
         <a href="mailto:hello@example.com">写信</a>
@@ -259,3 +281,9 @@
   <script src="/assets/main.js"></script>
 </body>
 </html>
+
+
+
+
+
+

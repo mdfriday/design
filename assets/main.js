@@ -13,7 +13,7 @@
 
   // Kick first-screen reveals immediately so the door doesn't feel "still loading".
   requestAnimationFrame(function () {
-    var firstScreen = document.querySelectorAll(".door .reveal, .page-hero .reveal");
+    var firstScreen = document.querySelectorAll(".door .reveal, .page-hero .reveal, .sec-hero .reveal");
     firstScreen.forEach(function (el, i) {
       setTimeout(function () { el.classList.add("in"); }, 80 + i * 180);
     });

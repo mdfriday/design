@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>终身学习 · 一程</title>
+  <meta name="description" content="终身学习，是一程里更日常的练习记录。把琐碎知识一点点整理成可复用的路径">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <style>
+    .learning-intro { max-width: 720px; margin: 0 auto; font-size: 18px; line-height: 2; color: var(--muted-ink); }
+    .learning-intro .slogan { font-family: var(--serif-en); font-style: italic; font-size: 22px; color: var(--vermilion); letter-spacing: 0.04em; margin-bottom: 1.2em; }
+
+    .learning-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1080px; margin: 0 auto; }
+    .learning-card { border-top: 1px solid var(--hairline); padding-top: 36px; min-height: 280px; position: relative; transition: transform 360ms var(--ease); }
+    .learning-card::before { content: ""; position: absolute; top: -1px; left: 0; width: 0; height: 1px; background: var(--vermilion); transition: width 700ms var(--ease); }
+    .learning-card.in::before { width: 88px; }
+    .learning-card:hover { transform: translateY(-4px); }
+    .learning-card.empty { opacity: 0.58; }
+    .learning-head { display: flex; justify-content: flex-start; align-items: baseline; gap: 18px; margin-bottom: 24px; }
+    .learning-num { font-family: var(--serif-en); font-style: italic; font-size: 28px; line-height: 1; letter-spacing: 0.06em; color: var(--vermilion); }
+    .learning-name { font-family: var(--serif-cn); font-weight: 300; font-size: 32px; letter-spacing: 0.12em; color: var(--ink); margin: 0; }
+    .learning-desc { font-size: 15px; line-height: 1.9; color: var(--muted-ink); margin: 0 0 28px; }
+    .topic-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .topic-links a, .topic-links span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid var(--hairline);
+      font-size: 14px;
+      color: var(--muted-ink);
+      letter-spacing: 0.06em;
+      transition: color 240ms var(--ease), border-color 240ms var(--ease), transform 240ms var(--ease);
+    }
+    .topic-links a:hover { color: var(--vermilion); border-color: var(--vermilion); transform: translateY(-2px); }
+    .topic-links span { color: var(--muted-ink); opacity: 0.7; }
+
+    @media (max-width: 900px) {
+      .learning-sections { grid-template-columns: 1fr; gap: 40px; }
+      .learning-name { font-size: 26px; }
+      .learning-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand"><a href="/index.html">一程</a></div>
+    <nav class="nav">
+      <a href="/about.html">关于</a>
+      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">精读札记</a><a href="/section/kuangjia.html">深度框架</a><a href="/section/fangtan.html">千面访谈</a></span></span>
+      <a href="/section/xuexi.html">终身学习</a>
+      <a href="/together.html">同行</a>
+      <a href="mailto:hello@example.com">写信</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumb reveal">一程<span class="sep">/</span>终身学习</div>
+      <h1 class="reveal">终身学习</h1>
+      <p class="lede reveal">把琐碎知识一点点整理成可复用的路径</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label reveal"><span class="num">I</span><span>日课</span></div>
+      <div class="learning-intro reveal">
+        <p class="slogan">Learn in public. Grow in small repetitions.</p>
+        <p>这里放更日常、更具体的学习记录。它们不一定完整，也不一定漂亮，但会留下一个人长期学习时真实走过的痕迹</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label reveal"><span class="num">II</span><span>学习板块</span></div>
+      <div class="learning-sections">
+        <article class="learning-card reveal">
+          <div class="learning-head">
+            <div class="learning-num">01</div>
+            <h2 class="learning-name">英语</h2>
+          </div>
+          <p class="learning-desc">从输入到输出，拆成可以长期推进的五个方向</p>
+          <div class="topic-links">
+            <a id="english-grammar" href="/section/xuexi.html#english-grammar">语法</a>
+            <a id="english-listening" href="/section/xuexi.html#english-listening">听力</a>
+            <a id="english-reading" href="/section/xuexi.html#english-reading">阅读</a>
+            <a id="english-writing" href="/section/xuexi.html#english-writing">写作</a>
+            <a id="english-speaking" href="/section/xuexi.html#english-speaking">口语</a>
+          </div>
+        </article>
+
+        <article class="learning-card reveal">
+          <div class="learning-head">
+            <div class="learning-num">02</div>
+            <h2 class="learning-name">一级建造师</h2>
+          </div>
+          <p class="learning-desc">按考试科目和实务方向拆分，便于后续持续发布</p>
+          <div class="topic-links">
+            <a id="jianzao-practice" href="/section/xuexi.html#jianzao-practice">通信与广电实务</a>
+            <a id="jianzao-management" href="/section/xuexi.html#jianzao-management">工程管理</a>
+            <a id="jianzao-law" href="/section/xuexi.html#jianzao-law">工程法规</a>
+            <a id="jianzao-economy" href="/section/xuexi.html#jianzao-economy">工程经济</a>
+          </div>
+        </article>
+
+        <article class="learning-card empty reveal">
+          <div class="learning-head">
+            <div class="learning-num">03</div>
+            <h2 class="learning-name">留白</h2>
+          </div>
+          <p class="learning-desc">后续补充新的长期学习主题</p>
+          <div class="topic-links"><span>待填充</span></div>
+        </article>
+
+        <article class="learning-card empty reveal">
+          <div class="learning-head">
+            <div class="learning-num">04</div>
+            <h2 class="learning-name">留白</h2>
+          </div>
+          <p class="learning-desc">后续补充新的长期学习主题</p>
+          <div class="topic-links"><span>待填充</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="colophon">一程 · A blog by 谢立成</div>
+      <nav>
+        <a href="/about.html">关于</a>
+        <a href="/section/xuexi.html">终身学习</a>
+        <a href="/together.html">同行</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="mailto:hello@example.com">写信</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/main.js"></script>
+</body>
+</html>
+
+
+
+
