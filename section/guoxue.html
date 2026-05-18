@@ -1,15 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>国学探微 · 一程</title>
-  <meta name="description" content="几千年前的人，也想过你今天的问题。把那些被滥用、被神化、被遗忘的智慧，翻译回普通人听得懂的话。">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <meta name="description" content="几千年前的人，也想过你今天的问题。每篇只讲一个现实问题和一个经典思考方法，把经典智慧带回具体生活。">
+  <link rel="stylesheet" href="/assets/styles.css?v=effects3">
 
   <style>
     .sec-hero { min-height: 75vh; padding: 200px 0 120px; display: flex; flex-direction: column; justify-content: center; }
@@ -41,6 +37,27 @@
     .articles p { font-size: 16px; color: var(--muted-ink); line-height: 1.85; max-width: 480px; margin: 0 auto 32px; }
     .articles .note { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.3em; color: var(--muted-ink); }
 
+    .reading-now { padding: 110px 0 145px; }
+    .reading-wrap { max-width: 900px; margin: 0 auto; }
+    .reading-kicker { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.28em; color: var(--vermilion); margin-bottom: 22px; }
+    .reading-title { font-family: var(--serif-cn); font-weight: 300; font-size: clamp(36px, 5vw, 56px); line-height: 1.35; letter-spacing: 0.12em; margin: 0 0 28px; color: var(--ink); }
+    .reading-note { max-width: 680px; font-size: 17px; line-height: 2; color: var(--muted-ink); margin: 0 0 72px; }
+    .reading-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--hairline); }
+    .reading-item a {
+      display: grid;
+      grid-template-columns: 150px 1fr 160px;
+      gap: 36px;
+      align-items: baseline;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--hairline);
+      transition: padding-left 360ms var(--ease);
+    }
+    .reading-item a:hover { padding-left: 18px; }
+    .reading-status { font-family: var(--serif-en); font-style: italic; font-size: 42px; line-height: 1; letter-spacing: 0.08em; color: var(--vermilion); }
+    .reading-name { font-family: var(--serif-cn); font-weight: 300; font-size: 28px; letter-spacing: 0.1em; color: var(--ink); margin: 0 0 10px; }
+    .reading-line { font-size: 15px; line-height: 1.85; color: var(--muted-ink); margin: 0; }
+    .reading-go { justify-self: end; font-size: 14px; letter-spacing: 0.16em; color: var(--muted-ink); white-space: nowrap; }
+
     .other-paths { padding: 120px 0; border-top: 1px solid var(--hairline); }
     .other-paths .label { font-family: var(--serif-en); font-style: italic; font-size: 13px; letter-spacing: 0.4em; color: var(--muted-ink); text-align: center; margin-bottom: 56px; }
     .other-paths ul { list-style: none; padding: 0; margin: 0 auto; max-width: 880px; }
@@ -61,6 +78,13 @@
       .sec-hero .lede { font-size: 18px; }
       .pledges .pledge-main { letter-spacing: 0.12em; }
       .expects { grid-template-columns: 1fr; gap: 32px; }
+      .reading-now { padding: 88px 0 108px; }
+      .reading-note { margin-bottom: 44px; }
+      .reading-item a { grid-template-columns: 1fr; gap: 10px; padding: 30px 0; }
+      .reading-item a:hover { padding-left: 0; }
+      .reading-status { font-size: 34px; }
+      .reading-name { font-size: 24px; }
+      .reading-go { justify-self: start; }
       .other-paths li a { grid-template-columns: 48px 1fr; grid-template-areas: "num name" "num tag" ".   arrow"; gap: 4px 16px; padding: 20px 0; }
       .other-paths li a:hover { padding-left: 0; }
       .other-paths .o-num { grid-area: num; font-size: 20px; }
@@ -72,14 +96,14 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="brand"><a href="/index.html">一程</a></div>
+  <header class="site-header" data-section-title="国学探微">
+    <div class="brand"><a href="/index.html">一程</a><span class="brand-section" aria-hidden="true">国学探微</span></div>
     <nav class="nav">
       <a href="/about.html">关于</a>
-      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">精读札记</a><a href="/section/kuangjia.html">深度框架</a><a href="/section/fangtan.html">千面访谈</a></span></span>
+      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">盘桓札记</a><a href="/section/kuangjia.html">思辨笃行</a><a href="/section/fangtan.html">人世之间</a></span></span>
       <a href="/section/xuexi.html">终身学习</a>
       <a href="/together.html">同行</a>
-      <a href="mailto:hello@example.com">写信</a>
+      <a href="/write.html">写信</a>
     </nav>
   </header>
 
@@ -87,9 +111,9 @@
     <div class="container">
       <div class="crumb reveal">一程<span class="sep">/</span>栏目<span class="sep">/</span>国学探微</div>
       <div class="num reveal">01</div>
-      <h1 class="reveal">国学探微</h1>
-      <div class="kicker reveal">They wondered too, thousands of years ago.</div>
-      <p class="lede reveal">几千年前的人，也想过你今天的问题</p>
+      <h1 class="reveal title-effect" data-title-effect="guoxue" data-scroll-fade>国学探微</h1>
+      <div class="kicker reveal" data-day="They wondered too, thousands of years ago." data-night="The old words also knew the long night.">They wondered too, thousands of years ago.</div>
+      <p class="lede reveal" data-day="几千年前的人，也想过你今天的问题" data-night="古人的智慧，也照过人的低谷">几千年前的人，也想过你今天的问题</p>
     </div>
   </section>
 
@@ -97,9 +121,8 @@
     <div class="container">
       <div class="section-label reveal"><span class="num">I</span><span>主旨</span></div>
       <div class="gist reveal">
-        <p class="slogan">They wondered too, thousands of years ago.</p>
-        <p>国学探微写的是古人如何面对具体问题。读《易经》《道德经》《金刚经》，不做学究式讲解，也不把经典神化成答案</p>
-        <p>我更关心的是：那些被时间留下来的思考方法，能不能帮今天的普通人把一件真实的事想清楚</p>
+        <p class="slogan" data-day="Moment, doing, heart, breath — a little light." data-night="When the road is gone, look for the turning.">Moment, doing, heart, breath — a little light.</p>
+        <p data-day="智慧藏于经典；处境、做事、焦虑、身心，或能照见一二" data-night="路断处，先看转机；心乱时，先守一寸清明">智慧藏于经典；处境、做事、焦虑、身心，或能照见一二</p>
       </div>
     </div>
   </section>
@@ -110,29 +133,35 @@
       <div class="expects">
         <div class="expect reveal">
           <div class="label">i.</div>
-          <div class="name">贴近现实</div>
-          <p>从换工作、共事、选择、得失这些当下问题切入，让经典重新落回生活</p>
+          <div class="name">照见处境</div>
+          <p>不急着问答案，先把所处之局看清</p>
         </div>
         <div class="expect reveal">
           <div class="label">ii.</div>
-          <div class="name">翻译回来</div>
-          <p>少用术语，多用普通话，把被滥用、被神化的智慧翻回能听懂的话</p>
+          <div class="name">顺势而行</div>
+          <p>不急着再用力，先听事情自己的来路</p>
         </div>
         <div class="expect reveal">
           <div class="label">iii.</div>
-          <div class="name">保持边界</div>
-          <p>不算命，不玄学，不替人下判断。只借古人的一双眼睛，重新看看今天</p>
+          <div class="name">安顿身心</div>
+          <p>不急着向外求，先把心和身体安住</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="articles">
+  <section class="reading-now">
     <div class="container">
-      <div class="stamp reveal">Articles</div>
-      <h3 class="reveal">国学探微文章目录</h3>
-      <p class="reveal">这里会收录本栏全部文章，先用几篇模拟内容占位，后续发布时直接替换即可</p>
-      <a class="note reveal" href="/section/guoxue-articles.html">点击阅读 →</a>
+      <div class="reading-wrap">
+        <div class="reading-kicker reveal">Classics Notes</div>
+        <h2 class="reading-title reveal">经典分卷</h2>
+        <ul class="reading-list motion-weave">
+          <li class="reading-item reveal"><a href="/section/guoxue-yijing.html"><span class="reading-status">01</span><div><h3 class="reading-name">易经・处境录</h3><p class="reading-line" data-day="好局面，也要看下一步会变在哪里" data-night="局面坏到极处时，先别把自己交给绝望">好局面，也要看下一步会变在哪里</p></div><span class="reading-go">阅读 →</span></a></li>
+          <li class="reading-item reveal"><a href="/section/guoxue-daode.html"><span class="reading-status">02</span><div><h3 class="reading-name">道德经・明道录</h3><p class="reading-line" data-day="事已成时，先把多余的力收回来" data-night="跌到最低时，是&quot;道&quot;在转身">事已成时，先把多余的力收回来</p></div><span class="reading-go">阅读 →</span></a></li>
+          <li class="reading-item reveal"><a href="/section/guoxue-jingang.html"><span class="reading-status">03</span><div><h3 class="reading-name">金刚经・破执录</h3><p class="reading-line" data-day="被掌声托起时，先看自己有没有着相" data-night="被黑压住时，先看这&quot;黑&quot;是不是实的">被掌声托起时，先看自己有没有着相</p></div><span class="reading-go">阅读 →</span></a></li>
+          <li class="reading-item reveal"><a href="/section/guoxue-neijing.html"><span class="reading-status">04</span><div><h3 class="reading-name">黄帝内经・调摄录</h3><p class="reading-line" data-day="还没透支之前，先给身体留一点余地" data-night="心力将尽时，先把身体守住">还没透支之前，先给身体留一点余地</p></div><span class="reading-go">阅读 →</span></a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -140,10 +169,10 @@
     <div class="container">
       <div class="label reveal">其他四条小径</div>
       <ul>
-        <li><a href="/section/lishi.html"><span class="o-num">02</span><span class="o-name">以史为鉴</span><span class="o-tag">历史不重复，但人会</span><span class="o-arrow">读 →</span></a></li>
-        <li><a href="/section/dushu.html"><span class="o-num">03</span><span class="o-name">精读札记</span><span class="o-tag">慢慢读一本书，才知道自己变了</span><span class="o-arrow">读 →</span></a></li>
-        <li><a href="/section/kuangjia.html"><span class="o-num">04</span><span class="o-name">深度框架</span><span class="o-tag">想不清楚的时候，搭个架子先撑住</span><span class="o-arrow">读 →</span></a></li>
-        <li><a href="/section/fangtan.html"><span class="o-num">05</span><span class="o-name">千面访谈</span><span class="o-tag">看一个人，不看他的成就，看他的脑回路</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/lishi.html"><span class="o-num">02</span><span class="o-name">以史为鉴</span><span class="o-tag" data-day="历史不重复，但人会" data-night="没有哪一个寒冬，可以占尽整年">历史不重复，但人会</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/dushu.html"><span class="o-num">03</span><span class="o-name">盘桓札记</span><span class="o-tag" data-day="好的东西，值得多停一会儿" data-night="在黑夜里多停一会儿，它也在教你">好的东西，值得多停一会儿</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/kuangjia.html"><span class="o-num">04</span><span class="o-name">思辨笃行</span><span class="o-tag">先把事物看清，再把事情做成</span><span class="o-arrow">读 →</span></a></li>
+        <li><a href="/section/fangtan.html"><span class="o-num">05</span><span class="o-name">人世之间</span><span class="o-tag" data-day="擦肩同行，也请你停下看看" data-night="差一点跌到底，也还可以重新成为自己">擦肩同行，也请你停下看看</span><span class="o-arrow">读 →</span></a></li>
       </ul>
     </div>
   </section>
@@ -156,12 +185,12 @@
         <a href="/section/xuexi.html">终身学习</a>
         <a href="/together.html">同行</a>
         <a href="/feed.xml">RSS</a>
-        <a href="mailto:hello@example.com">写信</a>
+        <a href="/write.html">写信</a>
       </nav>
     </div>
   </footer>
 
-  <script src="/assets/main.js"></script>
+  <script src="/assets/main.js?v=effects1"></script>
 </body>
 </html>
 

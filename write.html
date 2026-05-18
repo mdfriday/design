@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>写信 · 一程</title>
+  <meta name="description" content="写给一程：投稿、合作、评论，或留下一段想说的话">
+  <link rel="stylesheet" href="/assets/styles.css?v=effects3">
+  <style>
+    .letter-hero {
+      min-height: 64vh;
+      padding: 180px 0 92px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+    .letter-hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .letter-hero .crumb {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.4em;
+      color: var(--muted-ink);
+      margin-bottom: 40px;
+    }
+    .letter-hero .crumb .sep { margin: 0 12px; opacity: 0.5; }
+    .letter-hero h1 {
+      font-family: var(--serif-cn);
+      font-weight: 200;
+      font-size: clamp(56px, 8vw, 112px);
+      line-height: 1.15;
+      letter-spacing: 0.22em;
+      margin: 0 0 32px;
+      padding-left: 0.22em;
+      color: var(--ink);
+    }
+    .letter-hero .lede {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 2;
+      color: var(--muted-ink);
+      letter-spacing: 0.06em;
+    }
+
+    .letter-section { padding: 36px 0 150px; }
+    .letter-shell {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 84px;
+      align-items: start;
+      border-top: 1px solid var(--hairline);
+      padding-top: 68px;
+    }
+    .letter-aside {
+      position: sticky;
+      top: 120px;
+      color: var(--muted-ink);
+      font-size: 15px;
+      line-height: 1.9;
+      padding-top: 18px;
+    }
+    .letter-aside .kicker {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.32em;
+      color: var(--vermilion);
+      margin-bottom: 20px;
+    }
+    .letter-aside .seal-line {
+      width: 42px;
+      height: 1px;
+      background: var(--vermilion);
+      margin: 0 0 32px;
+      opacity: 0.72;
+    }
+    .letter-aside p + p { margin-top: 1.2em; }
+    .letter-form {
+      display: grid;
+      gap: 34px;
+      position: relative;
+      padding: 8px 0 0;
+    }
+    .letter-form::before {
+      content: "";
+      position: absolute;
+      top: -34px;
+      right: 12px;
+      width: 68px;
+      height: 68px;
+      border: 1px solid rgba(162, 63, 63, 0.38);
+      opacity: 0.42;
+    }
+    .letter-form::after {
+      content: "一程";
+      position: absolute;
+      top: -16px;
+      right: 31px;
+      font-family: var(--serif-cn);
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      color: rgba(162, 63, 63, 0.56);
+      writing-mode: vertical-rl;
+    }
+    .letter-opening {
+      font-family: var(--serif-cn);
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 2;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      margin: 0 0 6px;
+    }
+    .letter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+    .field label {
+      font-family: var(--serif-cn);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--muted-ink);
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--hairline);
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      letter-spacing: 0.04em;
+      padding: 12px 0 13px;
+      outline: none;
+      border-radius: 0;
+    }
+    .letter-types {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .type-choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .type-choice span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid var(--hairline);
+      color: var(--muted-ink);
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      transition: border-color 240ms var(--ease), color 240ms var(--ease), background 240ms var(--ease);
+    }
+    .type-choice input:checked + span {
+      color: var(--vermilion);
+      border-color: rgba(162, 63, 63, 0.62);
+      background: rgba(162, 63, 63, 0.035);
+    }
+    .field textarea {
+      min-height: 260px;
+      resize: vertical;
+      line-height: 1.9;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 34px,
+        rgba(232, 226, 213, 0.62) 35px
+      );
+      border-bottom: 1px solid var(--hairline);
+    }
+    .field input:focus,
+    .field textarea:focus {
+      border-bottom-color: var(--vermilion);
+    }
+    .field ::placeholder { color: rgba(107, 102, 96, 0.62); }
+    .form-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+    }
+    .letter-submit {
+      border: none;
+      border-bottom: 1px solid rgba(162, 63, 63, 0.5);
+      background: transparent;
+      color: var(--vermilion);
+      font-family: var(--serif-cn);
+      font-size: 15px;
+      letter-spacing: 0.16em;
+      padding: 0 0 8px;
+      cursor: pointer;
+      transition: color 240ms var(--ease), transform 240ms var(--ease), border-color 240ms var(--ease);
+    }
+    .letter-submit:hover {
+      color: var(--ink);
+      border-color: var(--vermilion);
+      transform: translateX(4px);
+    }
+    .mail-fallback {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--muted-ink);
+    }
+    .mail-fallback a {
+      color: var(--vermilion);
+      border-bottom-color: rgba(162, 63, 63, 0.35);
+    }
+
+    @media (max-width: 900px) {
+      .letter-hero { padding: 140px 0 72px; min-height: 52vh; }
+      .letter-shell {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding-top: 44px;
+      }
+      .letter-aside { position: static; }
+      .letter-row { grid-template-columns: 1fr; gap: 30px; }
+      .letter-types { grid-template-columns: 1fr 1fr; }
+      .letter-form::before,
+      .letter-form::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><a href="/index.html">一程</a></div>
+    <nav class="nav">
+      <a href="/about.html">关于</a>
+      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">盘桓札记</a><a href="/section/kuangjia.html">思辨笃行</a><a href="/section/fangtan.html">人世之间</a></span></span>
+      <a href="/section/xuexi.html">终身学习</a>
+      <a href="/together.html">同行</a>
+      <a href="/write.html">写信</a>
+    </nav>
+  </header>
+
+  <section class="letter-hero">
+    <div class="container">
+      <div class="crumb reveal">一程<span class="sep">/</span>写信</div>
+      <h1 class="reveal">写信</h1>
+      <p class="lede reveal">投稿、合作、评论，或只是留下一段想说的话</p>
+    </div>
+  </section>
+
+  <section class="letter-section">
+    <div class="container">
+      <div class="letter-shell">
+        <aside class="letter-aside reveal">
+          <div class="kicker">Letters</div>
+          <div class="seal-line"></div>
+          <p>人世之间，欢迎偶遇里的片刻、亲历过的故事，也欢迎认真而具体的合作想法</p>
+          <p>请留一个能联系到你的邮箱，文字长短都可以，慢慢说</p>
+        </aside>
+
+        <form class="letter-form reveal" id="letterForm">
+          <p class="letter-opening">见字如面，慢慢写来</p>
+
+          <div class="field">
+            <label for="letterType">来信类型</label>
+            <div class="letter-types" id="letterType">
+              <label class="type-choice"><input type="radio" name="letterType" value="投稿" checked><span>投稿</span></label>
+              <label class="type-choice"><input type="radio" name="letterType" value="合作"><span>合作</span></label>
+              <label class="type-choice"><input type="radio" name="letterType" value="评论"><span>评论</span></label>
+              <label class="type-choice"><input type="radio" name="letterType" value="其他"><span>其他</span></label>
+            </div>
+          </div>
+
+          <div class="letter-row">
+            <div class="field">
+              <label for="name">称呼</label>
+              <input id="name" name="name" type="text" placeholder="你愿意被怎样称呼">
+            </div>
+
+            <div class="field">
+              <label for="email">邮箱</label>
+              <input id="email" name="email" type="email" placeholder="yourname@example.com" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="topic">标题</label>
+            <input id="topic" name="topic" type="text" placeholder="投稿给人世之间 / 想聊一个合作 / 读后感">
+          </div>
+
+          <div class="field">
+            <label for="message">正文</label>
+            <textarea id="message" name="message" placeholder="把你想说的话写在这里，长短都可以" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="letter-submit" type="submit">整理成邮件</button>
+            <span class="mail-fallback">也可直接写到 <a href="mailto:hello@example.com">hello@example.com</a></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="colophon">一程 · A blog by 谢立成</div>
+      <nav>
+        <a href="/about.html">关于</a>
+        <a href="/section/xuexi.html">终身学习</a>
+        <a href="/together.html">同行</a>
+        <a href="/feed.xml">RSS</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/main.js?v=night2"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("letterForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var data = new FormData(form);
+        var type = data.get("letterType") || "来信";
+        var name = data.get("name") || "未留称呼";
+        var email = data.get("email") || "";
+        var topic = data.get("topic") || "无标题";
+        var message = data.get("message") || "";
+        var subject = "一程来信：" + type + " - " + topic;
+        var body = [
+          "来信类型：" + type,
+          "称呼：" + name,
+          "邮箱：" + email,
+          "标题：" + topic,
+          "",
+          "正文：",
+          message
+        ].join("\n");
+        window.location.href = "mailto:hello@example.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      });
+    })();
+  </script>
+</body>
+</html>

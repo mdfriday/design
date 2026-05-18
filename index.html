@@ -1,14 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>一程 · 谢立成的笔记</title>
-  <meta name="description" content="一程，是谢立成的笔记。我不教你想什么，我把『自己慢慢变成另一个人』的过程公开给你看">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <meta name="description" content="一程，是谢立成的笔记。我不想教你什么，我把『自己慢慢变成另一个人』的过程公开给你看">
 
   <style>
     :root {
@@ -17,9 +13,25 @@
       --muted-ink: #6B6660;
       --vermilion: #A23F3F;
       --hairline: #E8E2D5;
-      --serif-cn: "Noto Serif SC", "Songti SC", "STSong", serif;
-      --serif-en: "Cormorant Garamond", "Noto Serif SC", serif;
+      --panel: rgba(255, 255, 255, 0.96);
+      --shadow-soft: rgba(26, 22, 20, 0.08);
+      --glow: rgba(162, 63, 63, 0.18);
+      --serif-cn: "Songti SC", "STSong", "SimSun", serif;
+      --serif-en: "Times New Roman", Georgia, "Songti SC", serif;
       --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+      color-scheme: light;
+    }
+
+    html[data-theme="night"] {
+      --paper: #11100E;
+      --ink: #F2E8D2;
+      --muted-ink: #B7A98E;
+      --vermilion: #D18A70;
+      --hairline: #3A3027;
+      --panel: rgba(28, 24, 20, 0.96);
+      --shadow-soft: rgba(0, 0, 0, 0.38);
+      --glow: rgba(224, 160, 107, 0.22);
+      color-scheme: dark;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -35,6 +47,14 @@
       line-height: 1.85;
       letter-spacing: 0.04em;
       text-wrap: pretty;
+      transition: background-color 520ms var(--ease), color 520ms var(--ease);
+    }
+
+    html[data-theme="night"] body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(209, 138, 112, 0.12), transparent 34rem),
+        radial-gradient(circle at 12% 18%, rgba(242, 232, 210, 0.045), transparent 22rem),
+        var(--paper);
     }
 
     p { margin: 0 0 1.25em; }
@@ -49,6 +69,7 @@
     a:hover { border-bottom-color: var(--vermilion); }
 
     ::selection { background: var(--vermilion); color: var(--paper); }
+    html[data-theme="night"] ::selection { color: #11100E; }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
@@ -62,6 +83,7 @@
       pointer-events: none;
       mix-blend-mode: multiply;
     }
+    html[data-theme="night"] .site-header { mix-blend-mode: normal; }
     .site-header > * { pointer-events: auto; }
     .brand {
       font-family: var(--serif-cn);
@@ -77,6 +99,38 @@
       color: var(--muted-ink);
       letter-spacing: 0.15em;
       align-items: center;
+    }
+    .theme-toggle {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: rgba(250, 248, 243, 0.76);
+      color: var(--muted-ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: color 260ms var(--ease), border-color 260ms var(--ease), background 260ms var(--ease), box-shadow 260ms var(--ease), transform 260ms var(--ease);
+    }
+    .theme-toggle:hover {
+      color: var(--vermilion);
+      border-color: var(--vermilion);
+      transform: translateY(-1px);
+    }
+    .theme-toggle svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    html[data-theme="night"] .theme-toggle {
+      background: rgba(242, 232, 210, 0.055);
+      box-shadow: 0 0 24px var(--glow), inset 0 0 16px rgba(242, 232, 210, 0.025);
     }
     .nav-dropdown {
       position: relative;
@@ -113,8 +167,8 @@
       min-width: 104px;
       padding: 10px 12px;
       border: 1px solid var(--hairline);
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 16px 36px rgba(26, 22, 20, 0.08);
+      background: var(--panel);
+      box-shadow: 0 16px 36px var(--shadow-soft);
       display: flex;
       flex-direction: column;
       gap: 7px;
@@ -508,10 +562,10 @@
     <div class="brand">一程</div>
     <nav class="nav">
       <a href="/about.html">关于</a>
-      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">精读札记</a><a href="/section/kuangjia.html">深度框架</a><a href="/section/fangtan.html">千面访谈</a></span></span>
+      <span class="nav-dropdown"><span class="nav-trigger">栏目</span><span class="nav-menu"><a href="/section/guoxue.html">国学探微</a><a href="/section/lishi.html">以史为鉴</a><a href="/section/dushu.html">盘桓札记</a><a href="/section/kuangjia.html">思辨笃行</a><a href="/section/fangtan.html">人世之间</a></span></span>
       <a href="/section/xuexi.html">终身学习</a>
       <a href="/together.html">同行</a>
-      <a href="mailto:hello@example.com">写信</a>
+      <a href="/write.html">写信</a>
     </nav>
   </header>
 
@@ -520,7 +574,7 @@
     <div class="container">
       <div class="overline reveal">「一程」· <span class="overline-en">Underway</span></div>
       <h1 class="reveal">一程的事</h1>
-      <p class="subtitle reveal">Release. Stand. Become. The work of one stretch.</p>
+      <p class="subtitle reveal" data-day="Release. Stand. Become. The work of one stretch." data-night="Hold. Breathe. Rise. The work of one stretch.">Release. Stand. Become. The work of one stretch.</p>
     </div>
     <div class="scroll-hint">启程</div>
   </section>
@@ -528,8 +582,8 @@
   <!-- 02 Brief Intro -->
   <section class="intro" data-screen-label="02">
     <div class="container">
-      <p class="text reveal">
-        我不教你想什么<br>
+      <p class="text reveal" data-day-html='我不想教你什么<br>        我把<em>“自己慢慢变成另一个人”</em>的过程公开给你看' data-night-html='我不想救你什么<br>        我把<em>“自己从低谷中一点一点走出来”</em>的过程公开给你看'>
+        我不想教你什么<br>
         我把<em>“自己慢慢变成另一个人”</em>的过程公开给你看
       </p>
       <a class="more-link reveal" href="/about.html">关于一程 →</a>
@@ -550,8 +604,8 @@
           <span class="path-num">01</span>
           <div class="path-body">
             <div class="path-title">国学探微</div>
-            <p class="path-note">几千年前的人，也想过你今天的问题</p>
-            <div class="path-tagline">They wondered too, thousands of years ago.</div>
+            <p class="path-note" data-day="几千年前的人，也想过你今天的问题" data-night="古人的智慧，也照过人的低谷">几千年前的人，也想过你今天的问题</p>
+            <div class="path-tagline" data-day="They wondered too, thousands of years ago." data-night="The old words also knew the long night.">They wondered too, thousands of years ago.</div>
           </div>
           <div class="path-aside">
             <div class="path-cta">点此进入</div>
@@ -563,8 +617,8 @@
           <span class="path-num">02</span>
           <div class="path-body">
             <div class="path-title">以史为鉴</div>
-            <p class="path-note">历史不重复，但人会</p>
-            <div class="path-tagline">History doesn't repeat. People do.</div>
+            <p class="path-note" data-day="历史不重复，但人会" data-night="没有哪一个寒冬，可以占尽整年">历史不重复，但人会</p>
+            <div class="path-tagline" data-day="History doesn't repeat. People do." data-night="No winter owns the whole year.">History doesn't repeat. People do.</div>
           </div>
           <div class="path-aside">
             <div class="path-cta">点此进入</div>
@@ -575,9 +629,9 @@
         <li><a class="path reveal" href="/section/dushu.html">
           <span class="path-num">03</span>
           <div class="path-body">
-            <div class="path-title">精读札记</div>
-            <p class="path-note">慢慢读一本书，才知道自己变了</p>
-            <div class="path-tagline">Read slowly. Notice yourself changing.</div>
+            <div class="path-title">盘桓札记</div>
+            <p class="path-note" data-day="好的东西，值得多停一会儿" data-night="在黑夜里多停一会儿，它也在教你">好的东西，值得多停一会儿</p>
+            <div class="path-tagline" data-day="Linger where meaning gathers." data-night="Stay with the night. It is teaching you.">Linger where meaning gathers.</div>
           </div>
           <div class="path-aside">
             <div class="path-cta">点此进入</div>
@@ -588,9 +642,9 @@
         <li><a class="path reveal" href="/section/kuangjia.html">
           <span class="path-num">04</span>
           <div class="path-body">
-            <div class="path-title">深度框架</div>
-            <p class="path-note">想不清楚的时候，搭个架子先撑住</p>
-            <div class="path-tagline">When thinking gets messy, build a frame.</div>
+            <div class="path-title">思辨笃行</div>
+            <p class="path-note">先把事物看清，再把事情做成</p>
+            <div class="path-tagline">Think clearly. Practice steadily.</div>
           </div>
           <div class="path-aside">
             <div class="path-cta">点此进入</div>
@@ -601,9 +655,9 @@
         <li><a class="path reveal" href="/section/fangtan.html">
           <span class="path-num">05</span>
           <div class="path-body">
-            <div class="path-title">千面访谈</div>
-            <p class="path-note">看一个人，不看他的成就，看他的脑回路</p>
-            <div class="path-tagline">Look past the resume. Look at the mind.</div>
+            <div class="path-title">人世之间</div>
+            <p class="path-note" data-day="擦肩同行，也请你停下看看" data-night="差一点跌到底，也还可以重新成为自己">擦肩同行，也请你停下看看</p>
+            <div class="path-tagline" data-day="Passing lives, shared light." data-night="Almost lost. Still becoming.">Passing lives, shared light.</div>
           </div>
           <div class="path-aside">
             <div class="path-cta">点此进入</div>
@@ -635,12 +689,78 @@
         <a href="/section/xuexi.html">终身学习</a>
         <a href="/together.html">同行</a>
         <a href="/feed.xml">RSS</a>
-        <a href="mailto:hello@example.com">写信</a>
+        <a href="/write.html">写信</a>
       </nav>
     </div>
   </footer>
 
   <script>
+    const root = document.documentElement;
+    const storageKey = 'yicheng-theme';
+
+    function preferredTheme() {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get('theme');
+      if (requested === 'night' || requested === 'day') {
+        try { localStorage.setItem(storageKey, requested); } catch (err) {}
+        return requested;
+      }
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored === 'night' || stored === 'day') return stored;
+      } catch (err) {}
+      return 'day';
+    }
+
+    function themeIcon(theme) {
+      if (theme === 'night') {
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>';
+      }
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A8.5 8.5 0 1 1 11.21 3 6.7 6.7 0 0 0 21 12.79z"></path></svg>';
+    }
+
+    function applyCopy(theme) {
+      document.querySelectorAll('[data-day], [data-night], [data-day-html], [data-night-html]').forEach((el) => {
+        const text = el.getAttribute(theme === 'night' ? 'data-night' : 'data-day');
+        const html = el.getAttribute(theme === 'night' ? 'data-night-html' : 'data-day-html');
+        if (html !== null) {
+          el.innerHTML = html;
+        } else if (text !== null) {
+          el.textContent = text;
+        }
+      });
+    }
+
+    function applyTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      applyCopy(theme);
+      document.querySelectorAll('.theme-toggle').forEach((button) => {
+        button.innerHTML = themeIcon(theme);
+        button.setAttribute('aria-label', theme === 'night' ? '切换到白天模式' : '切换到黑夜模式');
+        button.setAttribute('title', theme === 'night' ? '白天模式' : '黑夜模式');
+      });
+    }
+
+    function installThemeToggle() {
+      document.querySelectorAll('.nav').forEach((nav) => {
+        if (nav.querySelector('.theme-toggle')) return;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'theme-toggle';
+        button.addEventListener('click', () => {
+          const next = root.getAttribute('data-theme') === 'night' ? 'day' : 'night';
+          try { localStorage.setItem(storageKey, next); } catch (err) {}
+          applyTheme(next);
+        });
+        nav.appendChild(button);
+      });
+    }
+
+    const initialTheme = preferredTheme();
+    applyTheme(initialTheme);
+    installThemeToggle();
+    applyTheme(initialTheme);
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
